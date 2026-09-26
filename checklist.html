@@ -7,29 +7,29 @@
     <style>
         body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
         header {
-            background: #e30613; color: white; padding: 20px 30px;
-            display: flex; justify-content: space-between; align-items: center;
+            background: #e30613; color: white; padding: 15px 20px;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
         }
-        header h1 { margin: 0; font-size: 20px; }
+        header h1 { margin: 0; font-size: 18px; }
         .nav-links button {
-            background: white; color: #e30613; border: none; padding: 8px 15px;
-            border-radius: 6px; cursor: pointer; font-weight: bold;
+            background: white; color: #e30613; border: none; padding: 8px 12px;
+            border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px;
         }
-        .container { max-width: 1000px; margin: 30px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h2 { color: #e30613; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+        .container { max-width: 1000px; margin: 15px auto; padding: 15px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: #e30613; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; font-size: 20px; }
         
-        /* Estructura en dos columnas para los datos generales */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        /* Formularios en dos columnas por defecto */
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
         .input-group { text-align: left; }
         .input-group label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; color: #444; }
         .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
         
-        /* Cuadrícula de botones: 5 por línea, color azul claro */
+        /* Cuadrícula de botones de módulos: 5 por línea en PC */
         .buttons-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            margin-bottom: 25px;
+            gap: 8px;
+            margin-bottom: 20px;
         }
         .option-btn {
             background: #e3f2fd;
@@ -43,15 +43,8 @@
             text-align: center;
             transition: all 0.2s ease;
         }
-        .option-btn:hover {
-            background: #bbdefb;
-            border-color: #64b5f6;
-        }
-        .option-btn.selected {
-            background: #1976d2;
-            color: white;
-            border-color: #1565c0;
-        }
+        .option-btn:hover { background: #bbdefb; border-color: #64b5f6; }
+        .option-btn.selected { background: #1976d2; color: white; border-color: #1565c0; }
 
         /* Secciones desplegables */
         .section-content {
@@ -59,95 +52,59 @@
             background: #fafafa;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
-            padding: 20px;
-            margin-top: 15px;
-            margin-bottom: 25px;
+            padding: 15px;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
-        .section-content.active {
-            display: block;
-        }
+        .section-content.active { display: block; }
 
-        /* Estilo para las subpreguntas detalladas de los módulos */
+        /* Subpreguntas detalladas */
         .sub-item {
             background: white;
             border: 1px solid #e0e0e0;
-            padding: 15px;
+            padding: 12px;
             border-radius: 6px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
-        .sub-item p {
-            margin: 0 0 10px 0;
-            font-weight: bold;
-            font-size: 14px;
-            color: #333;
-        }
+        .sub-item p { margin: 0 0 8px 0; font-weight: bold; font-size: 13px; color: #333; }
         .sub-controls {
             display: grid;
-            grid-template-columns: 180px 1fr 1fr;
-            gap: 10px;
+            grid-template-columns: 160px 1fr 1fr;
+            gap: 8px;
             align-items: center;
         }
         .sub-controls select, .sub-controls input[type="text"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 13px;
-            box-sizing: border-box;
-            background: white;
+            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; background: white;
         }
 
-        /* Cuadro de Resumen y Cálculos (Ajustado a 5 columnas para incluir el % Cumplimiento) */
-        .summary-box {
-            background: #f8f9fa;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
-        .summary-box h3 {
-            margin-top: 0;
-            color: #333;
-            font-size: 16px;
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 8px;
-        }
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 10px;
-            text-align: center;
-        }
-        .summary-card {
-            background: white;
-            padding: 12px 6px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-        .summary-card span {
-            display: block;
-            font-size: 11px;
-            color: #666;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .summary-card strong {
-            font-size: 16px;
-            color: #e30613;
-        }
+        /* Cuadro de Resumen */
+        .summary-box { background: #f8f9fa; border: 2px solid #dee2e6; border-radius: 8px; padding: 15px; margin-top: 20px; margin-bottom: 15px; }
+        .summary-box h3 { margin-top: 0; color: #333; font-size: 15px; border-bottom: 1px solid #ccc; padding-bottom: 6px; }
+        .summary-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; text-align: center; }
+        .summary-card { background: white; padding: 10px 4px; border-radius: 6px; border: 1px solid #ccc; }
+        .summary-card span { display: block; font-size: 10px; color: #666; margin-bottom: 3px; font-weight: bold; }
+        .summary-card strong { font-size: 15px; color: #e30613; }
         
         button.btn-submit {
-            background: #e30613; color: white; border: none; padding: 14px 25px;
+            background: #e30613; color: white; border: none; padding: 14px;
             border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 10px; width: 100%;
         }
         button.btn-submit:hover { background: #b80510; }
+
+        /* --- MEDIA QUERIES PARA CELULARES Y TABLETS --- */
+        @media (max-width: 768px) {
+            .container { margin: 10px; padding: 15px; }
+            .form-grid { grid-template-columns: 1fr; } /* Pasa los datos generales a 1 sola columna en móviles */
+            .buttons-grid { grid-template-columns: repeat(2, 1fr); } /* Los botones pasan a 2 por línea en celulares */
+            .sub-controls { grid-template-columns: 1fr; } /* Las preguntas pasan los controles en columna vertical para que no se compriman */
+            .summary-grid { grid-template-columns: repeat(2, 1fr); } /* El resumen se acomoda mejor en pantallas chicas */
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Sodicarga - Checklist Preoperacional PESV</h1>
+        <h1>Sodicarga - Checklist PESV</h1>
         <div class="nav-links">
             <button onclick="window.location.href='usuarios.html'">Volver a Usuarios</button>
         </div>
@@ -155,67 +112,25 @@
 
     <div class="container">
         <h2>CHECKLIST PREOPERACIONAL DE VEHÍCULOS – PESV</h2>
-        <p style="color: #666; font-size: 13px; margin-bottom: 25px;">Inspección diaria antes de iniciar la operación</p>
+        <p style="color: #666; font-size: 13px; margin-bottom: 20px;">Inspección diaria antes de iniciar la operación</p>
 
         <form id="pesvForm">
-            <!-- Datos Generales de la Inspección -->
+            <!-- Datos Generales -->
             <div class="form-grid">
-                <div class="input-group">
-                    <label>Fecha</label>
-                    <input type="date" required>
-                </div>
-                <div class="input-group">
-                    <label>Hora de inspección</label>
-                    <input type="time" required>
-                </div>
-                <div class="input-group">
-                    <label>Placa</label>
-                    <input type="text" placeholder="Ej: ABC-123" required>
-                </div>
-                <div class="input-group">
-                    <label>Tipo de vehículo</label>
-                    <input type="text" placeholder="Ej: Furgón / Tractocamión" required>
-                </div>
-                <div class="input-group">
-                    <label>Marca</label>
-                    <input type="text" placeholder="Marca del vehículo" required>
-                </div>
-                <div class="input-group">
-                    <label>Modelo</label>
-                    <input type="text" placeholder="Modelo / Año" required>
-                </div>
-                <div class="input-group">
-                    <label>Kilometraje</label>
-                    <input type="number" placeholder="Kilometraje actual" required>
-                </div>
-                <div class="input-group">
-                    <label>Conductor</label>
-                    <input type="text" placeholder="Nombre completo del conductor" required>
-                </div>
-                <div class="input-group">
-                    <label>Cédula</label>
-                    <input type="text" placeholder="Número de cédula" required>
-                </div>
-                <div class="input-group">
-                    <label>Empresa / propietario</label>
-                    <input type="text" placeholder="Empresa o propietario" required>
-                </div>
-                <div class="input-group">
-                    <label>Cliente / servicio</label>
-                    <input type="text" placeholder="Cliente o servicio asignado" required>
-                </div>
-                <div class="input-group">
-                    <label>Origen</label>
-                    <input type="text" placeholder="Ciudad o punto de origen" required>
-                </div>
-                <div class="input-group">
-                    <label>Destino</label>
-                    <input type="text" placeholder="Ciudad o punto de destino" required>
-                </div>
-                <div class="input-group">
-                    <label>Tipo de carga</label>
-                    <input type="text" placeholder="Descripción de la carga" required>
-                </div>
+                <div class="input-group"><label>Fecha</label><input type="date" required></div>
+                <div class="input-group"><label>Hora de inspección</label><input type="time" required></div>
+                <div class="input-group"><label>Placa</label><input type="text" placeholder="Ej: ABC-123" required></div>
+                <div class="input-group"><label>Tipo de vehículo</label><input type="text" placeholder="Ej: Furgón / Tractocamión" required></div>
+                <div class="input-group"><label>Marca</label><input type="text" placeholder="Marca" required></div>
+                <div class="input-group"><label>Modelo</label><input type="text" placeholder="Modelo / Año" required></div>
+                <div class="input-group"><label>Kilometraje</label><input type="number" placeholder="Kilometraje" required></div>
+                <div class="input-group"><label>Conductor</label><input type="text" placeholder="Nombre conductor" required></div>
+                <div class="input-group"><label>Cédula</label><input type="text" placeholder="Cédula" required></div>
+                <div class="input-group"><label>Empresa / propietario</label><input type="text" placeholder="Empresa" required></div>
+                <div class="input-group"><label>Cliente / servicio</label><input type="text" placeholder="Cliente" required></div>
+                <div class="input-group"><label>Origen</label><input type="text" placeholder="Origen" required></div>
+                <div class="input-group"><label>Destino</label><input type="text" placeholder="Destino" required></div>
+                <div class="input-group"><label>Tipo de carga</label><input type="text" placeholder="Carga" required></div>
             </div>
 
             <div class="input-group" style="margin-bottom: 20px;">
@@ -223,9 +138,9 @@
                 <input type="text" placeholder="Nombre de quien inspecciona" required>
             </div>
 
-            <!-- Botones de Módulos (5 por línea, color azul claro) -->
+            <!-- Botones de Módulos -->
             <div class="input-group">
-                <label>Selección de Módulos de Inspección (Haga clic para alternar secciones)</label>
+                <label>Selección de Módulos de Inspección</label>
                 <div class="buttons-grid">
                     <div class="option-btn" onclick="mostrarSeccion('seccion-documentacion', this)">Documentación</div>
                     <div class="option-btn" onclick="mostrarSeccion('seccion-exterior', this)">Estado Exterior</div>
@@ -242,7 +157,7 @@
 
             <!-- 1. SECCIÓN: DOCUMENTACIÓN -->
             <div id="seccion-documentacion" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Documentación</h3>
                 <div class="sub-item"><p>1. Licencia de tránsito disponible y vigente</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. SOAT vigente</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Revisión técnico-mecánica vigente, cuando aplique</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -253,7 +168,7 @@
 
             <!-- 2. SECCIÓN: ESTADO EXTERIOR -->
             <div id="seccion-exterior" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Estado Exterior</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Estado Exterior</h3>
                 <div class="sub-item"><p>1. Carrocería en buen estado</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Chasis sin daños visibles</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Parachoques delantero</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -269,7 +184,7 @@
 
             <!-- 3. SECCIÓN: LLANTAS -->
             <div id="seccion-llantas" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Llantas</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Llantas</h3>
                 <div class="sub-item"><p>1. Llanta delantera izquierda</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Llanta delantera derecha</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Llantas traseras</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -283,7 +198,7 @@
 
             <!-- 4. SECCIÓN: ILUMINACIÓN Y SEÑALIZACIÓN -->
             <div id="seccion-iluminacion" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Iluminación y Señalización</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Iluminación y Señalización</h3>
                 <div class="sub-item"><p>1. Luces bajas</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Luces altas</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Luces de posición</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -298,7 +213,7 @@
 
             <!-- 5. SECCIÓN: SISTEMAS MECÁNICOS -->
             <div id="seccion-mecanicos" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Sistemas Mecánicos</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Sistemas Mecánicos</h3>
                 <div class="sub-item"><p>1. Sistema de frenos</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Freno de estacionamiento</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Dirección</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -312,7 +227,7 @@
 
             <!-- 6. SECCIÓN: FLUIDOS -->
             <div id="seccion-fluidos" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Fluidos</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Fluidos</h3>
                 <div class="sub-item"><p>1. Nivel de aceite del motor</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Líquido refrigerante</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Líquido de frenos</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -324,7 +239,7 @@
 
             <!-- 7. SECCIÓN: SEGURIDAD ACTIVA/PASIVA -->
             <div id="seccion-seguridad" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Seguridad Activa/Pasiva</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Seguridad Activa/Pasiva</h3>
                 <div class="sub-item"><p>1. Cinturón conductor en buen estado</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Cinturones de pasajeros, cuando aplique</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Sillas y apoyacabezas en buen estado</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -337,7 +252,7 @@
 
             <!-- 8. SECCIÓN: EQUIPO DE PREVENCIÓN/SEGURIDAD -->
             <div id="seccion-prevencion" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Equipo de Prevención/Seguridad</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Equipo Prevención/Seguridad</h3>
                 <div class="sub-item"><p>1. Extintor disponible</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Extintor con carga vigente</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Botiquín</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -351,7 +266,7 @@
 
             <!-- 9. SECCIÓN: COMPARTIMIENTO CARGA -->
             <div id="seccion-carga" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Compartimiento Carga</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Compartimiento Carga</h3>
                 <div class="sub-item"><p>1. Carrocería/contenedor en buen estado</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Puertas de carga funcionan correctamente</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Cerraduras funcionan correctamente</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -368,7 +283,7 @@
 
             <!-- 10. SECCIÓN: CONTROL SEGURIDAD / TRAZABILIDAD -->
             <div id="seccion-trazabilidad" class="section-content">
-                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Control Seguridad / Trazabilidad</h3>
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle: Control Seguridad / Trazabilidad</h3>
                 <div class="sub-item"><p>1. GPS/satelital funcionando</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>2. Botón de pánico, cuando aplique</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
                 <div class="sub-item"><p>3. Sistema de comunicación disponible</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
@@ -380,30 +295,15 @@
                 <div class="sub-item"><p>9. No se evidencian condiciones inseguras</p><div class="sub-controls"><select class="eval-select" onchange="calcularTotales()"><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <!-- CUADRO DE RESUMEN Y CÁLCULOS ANTES DEL BOTÓN DE ENVIAR -->
+            <!-- CUADRO DE RESUMEN Y CÁLCULOS -->
             <div class="summary-box">
                 <h3>Resumen de Calificación del Checklist</h3>
                 <div class="summary-grid">
-                    <div class="summary-card">
-                        <span>Total Ítems</span>
-                        <strong id="lbl-total">90</strong>
-                    </div>
-                    <div class="summary-card">
-                        <span>Cumple</span>
-                        <strong id="lbl-cumple" style="color: #28a745;">0</strong>
-                    </div>
-                    <div class="summary-card">
-                        <span>No Cumple</span>
-                        <strong id="lbl-nocumple" style="color: #dc3545;">0</strong>
-                    </div>
-                    <div class="summary-card">
-                        <span>No Aplica</span>
-                        <strong id="lbl-noaplica" style="color: #ffc107;">0</strong>
-                    </div>
-                    <div class="summary-card">
-                        <span>% Cumplimiento</span>
-                        <strong id="lbl-porcentaje" style="color: #17a2b8;">0%</strong>
-                    </div>
+                    <div class="summary-card"><span>Total Ítems</span><strong id="lbl-total">90</strong></div>
+                    <div class="summary-card"><span>Cumple</span><strong id="lbl-cumple" style="color: #28a745;">0</strong></div>
+                    <div class="summary-card"><span>No Cumple</span><strong id="lbl-nocumple" style="color: #dc3545;">0</strong></div>
+                    <div class="summary-card"><span>No Aplica</span><strong id="lbl-noaplica" style="color: #ffc107;">0</strong></div>
+                    <div class="summary-card"><span>% Cumplimiento</span><strong id="lbl-porcentaje" style="color: #17a2b8;">0%</strong></div>
                 </div>
             </div>
 
@@ -425,7 +325,6 @@
             }
         }
 
-        // Función para calcular totales y el % Cumplimiento según la fórmula
         function calcularTotales() {
             const selects = document.querySelectorAll('.eval-select');
             let cumple = 0;
@@ -434,22 +333,13 @@
             const totalItems = 90;
 
             selects.forEach(sel => {
-                if (sel.value === 'Cumple') {
-                    cumple++;
-                } else if (sel.value === 'No Cumple') {
-                    noCumple++;
-                } else if (sel.value === 'No Aplica') {
-                    noAplica++;
-                }
+                if (sel.value === 'Cumple') cumple++;
+                else if (sel.value === 'No Cumple') noCumple++;
+                else if (sel.value === 'No Aplica') noAplica++;
             });
 
-            // Fórmula solicitada: cumple / (Total items - No aplica)
             let denominador = totalItems - noAplica;
-            let porcentaje = 0;
-            
-            if (denominador > 0) {
-                porcentaje = (cumple / denominador) * 100;
-            }
+            let porcentaje = denominador > 0 ? (cumple / denominador) * 100 : 0;
 
             document.getElementById('lbl-cumple').innerText = cumple;
             document.getElementById('lbl-nocumple').innerText = noCumple;
