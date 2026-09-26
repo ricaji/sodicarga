@@ -24,25 +24,34 @@
         .input-group label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; color: #444; }
         .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
         
-        /* Contenedor de opciones en una sola línea */
-        .single-line-options {
-            display: flex;
-            gap: 20px;
-            overflow-x: auto;
-            white-space: nowrap;
-            padding: 12px 10px;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+        /* Cuadrícula de botones: exactamente 5 por línea */
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
             margin-bottom: 25px;
         }
-        .single-line-options label {
-            font-size: 13px;
-            font-weight: normal;
+        .option-btn {
+            background: #f8f9fa;
+            border: 2px solid #ddd;
+            color: #333;
+            padding: 12px 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
             cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+        .option-btn:hover {
+            border-color: #e30613;
+            background: #fff5f5;
+        }
+        /* Estilo cuando el botón está seleccionado */
+        .option-btn.selected {
+            background: #e30613;
+            color: white;
+            border-color: #e30613;
         }
 
         .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
@@ -135,20 +144,20 @@
                 <input type="text" placeholder="Nombre de quien inspecciona" required>
             </div>
 
-            <!-- Opciones requeridas en una sola línea debajo de Responsable inspección -->
+            <!-- Botones organizados exactamente en 5 por línea -->
             <div class="input-group">
-                <label>Selección de Categorías / Módulos de Inspección</label>
-                <div class="single-line-options">
-                    <label><input type="checkbox" name="cat" value="Documentacion"> Documentación</label>
-                    <label><input type="checkbox" name="cat" value="Estado Exterior"> Estado Exterior</label>
-                    <label><input type="checkbox" name="cat" value="Llantas"> Llantas</label>
-                    <label><input type="checkbox" name="cat" value="Iluminacion"> Iluminación y señalización</label>
-                    <label><input type="checkbox" name="cat" value="Sistemas Mecánicos"> Sistemas Mecánicos</label>
-                    <label><input type="checkbox" name="cat" value="Fluidos"> Fluidos</label>
-                    <label><input type="checkbox" name="cat" value="Seguridad Activa/Pasiva"> Seguridad Activa/Pasiva</label>
-                    <label><input type="checkbox" name="cat" value="Equipo Prevención/Seguridad"> Equipo de Prevención/Seguridad</label>
-                    <label><input type="checkbox" name="cat" value="Compartimiento Carga"> Compartimiento Carga</label>
-                    <label><input type="checkbox" name="cat" value="Control Seguridad/Trazabilidad"> Control Seguridad/Trazabilidad</label>
+                <label>Selección de Módulos de Inspección</label>
+                <div class="buttons-grid">
+                    <div class="option-btn" onclick="toggleBtn(this)">Documentación</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Estado Exterior</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Llantas</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Iluminación y señalización</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Sistemas Mecánicos</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Fluidos</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Seguridad Activa/Pasiva</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Equipo Prevención/Seguridad</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Compartimiento Carga</div>
+                    <div class="option-btn" onclick="toggleBtn(this)">Control Seguridad/Trazabilidad</div>
                 </div>
             </div>
 
@@ -250,6 +259,11 @@
     </div>
 
     <script>
+        // Función para activar/desactivar visualmente los botones de categorías
+        function toggleBtn(btn) {
+            btn.classList.toggle('selected');
+        }
+
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
