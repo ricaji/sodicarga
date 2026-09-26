@@ -69,27 +69,27 @@
 
         .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
         
-        /* Estilo para las subpreguntas detalladas de Documentación */
-        .doc-item {
+        /* Estilo para las subpreguntas detalladas de los módulos */
+        .sub-item {
             background: white;
             border: 1px solid #e0e0e0;
             padding: 15px;
             border-radius: 6px;
             margin-bottom: 15px;
         }
-        .doc-item p {
+        .sub-item p {
             margin: 0 0 10px 0;
             font-weight: bold;
             font-size: 14px;
             color: #333;
         }
-        .doc-controls {
+        .sub-controls {
             display: grid;
             grid-template-columns: 180px 1fr 1fr;
             gap: 10px;
             align-items: center;
         }
-        .doc-controls select, .doc-controls input[type="text"] {
+        .sub-controls select, .sub-controls input[type="text"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
@@ -193,7 +193,7 @@
                 <label>Selección de Módulos de Inspección (Haga clic para desplegar)</label>
                 <div class="buttons-grid">
                     <div class="option-btn" onclick="toggleSeccion('seccion-documentacion', this)">Documentación</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Estado Exterior</div>
+                    <div class="option-btn" onclick="toggleSeccion('seccion-exterior', this)">Estado Exterior</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Llantas</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Iluminación y señalización</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Sistemas Mecánicos</div>
@@ -209,9 +209,9 @@
             <div id="seccion-documentacion" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
                 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>1. Licencia de tránsito disponible y vigente</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -223,9 +223,9 @@
                     </div>
                 </div>
 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>2. SOAT vigente</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -237,9 +237,9 @@
                     </div>
                 </div>
 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>3. Revisión técnico-mecánica vigente, cuando aplique</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -251,9 +251,9 @@
                     </div>
                 </div>
 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>4. Licencia de conducción vigente y categoría correspondiente</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -265,9 +265,9 @@
                     </div>
                 </div>
 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>5. Documentos adicionales exigidos para la operación</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -279,9 +279,9 @@
                     </div>
                 </div>
 
-                <div class="doc-item">
+                <div class="sub-item">
                     <p>6. Documentación de la carga disponible</p>
-                    <div class="doc-controls">
+                    <div class="sub-controls">
                         <select required>
                             <option value="">Seleccione...</option>
                             <option value="Cumple">Cumple</option>
@@ -294,17 +294,167 @@
                 </div>
             </div>
 
-            <!-- Ítems Generales de Verificación -->
-            <div class="section-title">Ítems de Verificación Operativa Restantes</div>
+            <!-- SECCIÓN DESPLEGABLE: ESTADO EXTERIOR -->
+            <div id="seccion-exterior" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Estado Exterior</h3>
+                
+                <div class="sub-item">
+                    <p>1. Carrocería en buen estado</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
 
-            <div class="checklist-item">
-                <span>Estado Exterior (Carrocería, vidrios, espejos y puertas)</span>
-                <div class="options">
-                    <label><input type="radio" name="ext" required> Bueno</label>
-                    <label><input type="radio" name="ext"> Malo</label>
-                    <label><input type="radio" name="ext"> N/A</label>
+                <div class="sub-item">
+                    <p>2. Chasis sin daños visibles</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>3. Parachoques delantero</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>4. Parachoques trasero</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>5. Puertas y mecanismos de cierre</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>6. Vidrios en buen estado</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>7. Parabrisas sin daños que afecten visibilidad</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>8. Placas legibles y correctamente instaladas</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>9. Retrovisores/espejos en buen estado</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>10. Limpiaparabrisas funcionando</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="sub-item">
+                    <p>11. No se evidencian fugas de fluidos</p>
+                    <div class="sub-controls">
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
+                        </select>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
                 </div>
             </div>
+
+            <!-- Ítems Generales Restantes -->
+            <div class="section-title">Ítems de Verificación Operativa Restantes</div>
 
             <div class="checklist-item">
                 <span>Llantas (Presión, labrado y estado general)</span>
