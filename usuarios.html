@@ -1,1 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodicarga - Administración de Usuarios</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
+        header {
+            background: #e30613; color: white; padding: 20px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header h1 { margin: 0; font-size: 20px; }
+        .nav-links button {
+            background: white; color: #e30613; border: none; padding: 8px 15px;
+            border-radius: 6px; cursor: pointer; font-weight: bold; margin-left: 10px;
+        }
+        .nav-links button:hover { background: #f1f1f1; }
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; }
+        .card {
+            background: white; padding: 25px; border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px;
+        }
+        h2 { color: #e30613; margin-top: 0; }
+        .input-group { margin-bottom: 15px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #333; }
+        .input-group input, .input-group select {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
+        }
+        button.btn-primary {
+            background: #e30613; color: white; border: none; padding: 10px 20px;
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+        }
+        button.btn-primary:hover { background: #b80510; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9fa; color: #333; }
+        .btn-danger { background: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+        .btn-danger:hover { background: #bd2130; }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>Sodicarga - Panel de Administración</h1>
+        <div class="nav-links">
+            <button onclick="window.location.href='checklist.html'">Ir al Checklist PESV</button>
+            <button onclick="window.location.href='index.html'" style="background: #333; color: white;">Cerrar Sesión</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h2>Crear Nuevo Usuario</h2>
+            <form id="userForm">
+                <div style="display: flex; gap: 15px;">
+                    <div class="input-group" style="flex: 1;">
+                        <label>Nombre de Usuario</label>
+                        <input type="text" id="nuevoNombre" required placeholder="Ej: JuanPerez">
+                    </div>
+                    <div class="input-group" style="flex: 1;">
+                        <label>Rol</label>
+                        <select id="nuevoRol">
+                            <option value="Conductor">Conductor</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Administrador">Administrador</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-primary">Agregar Usuario</button>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>Usuarios Registrados</h2>
+            <table>
+                <thead>
+                    <tr><th>Usuario</th><th>Rol</th><th>Acciones</th></tr>
+                </thead>
+                <tbody id="tablaUsuarios"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        let usuarios = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
+            { nombre: 'Administrador', rol: 'Administrador' },
+            { nombre: 'CarlosConductor', rol: 'Conductor' }
+        ];
+
+        function cargarUsuarios() {
+            const tbody = document.getElementById('tablaUsuarios');
+            tbody.innerHTML = '';
+            usuarios.forEach((u, index) => {
+                let fila = document.createElement('tr');
+                fila.innerHTML = `
+                    <td>${u.nombre}</td>
+                    <td>${u.rol}</td>
+                    <td><button class="btn-danger" onclick="eliminarUsuario(${index})">Eliminar</button></td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        document.getElementById('userForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nuevoNombre').value;
+            const rol = document.getElementById('nuevoRol').value;
+            usuarios.push({ nombre, rol });
+            localStorage.setItem('sodicarga_usuarios', JSON.stringify(usuarios));
+            document.getElementById('nuevoNombre').value = '';
+            cargarUsuarios();
+        });
+
+        function eliminarUsuario(index) {
+            if(usuarios[index].nombre === 'Administrador') {
+                alert('No se puede eliminar al Administrador principal.');
+                return;
+            }
+            usuarios.splice(index, 1);
+            localStorage.setItem('sodicarga_usuarios', JSON.stringify(usuarios));
+            cargarUsuarios();
+        }
+
+        cargarUsuarios();
+    </script>
+</body>
+</html>
