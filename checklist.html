@@ -24,7 +24,7 @@
         .input-group label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; color: #444; }
         .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
         
-        /* Cuadrícula de botones: exactamente 5 por línea */
+        /* Cuadrícula de botones: 5 por línea, color azul claro */
         .buttons-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
@@ -32,10 +32,10 @@
             margin-bottom: 25px;
         }
         .option-btn {
-            background: #f8f9fa;
-            border: 2px solid #ddd;
-            color: #333;
-            padding: 12px 8px;
+            background: #e3f2fd; /* Azul claro */
+            border: 2px solid #90caf9; /* Borde azul claro sutil */
+            color: #0d47a1; /* Texto azul oscuro para buena visibilidad */
+            padding: 14px 10px;
             border-radius: 8px;
             font-size: 12px;
             font-weight: bold;
@@ -44,14 +44,14 @@
             transition: all 0.2s ease;
         }
         .option-btn:hover {
-            border-color: #e30613;
-            background: #fff5f5;
+            background: #bbdefb;
+            border-color: #64b5f6;
         }
-        /* Estilo cuando el botón está seleccionado */
+        /* Estilo cuando el botón está seleccionado (cambia a un azul más intenso) */
         .option-btn.selected {
-            background: #e30613;
+            background: #1976d2;
             color: white;
-            border-color: #e30613;
+            border-color: #1565c0;
         }
 
         .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
@@ -144,7 +144,7 @@
                 <input type="text" placeholder="Nombre de quien inspecciona" required>
             </div>
 
-            <!-- Botones organizados exactamente en 5 por línea -->
+            <!-- Botones en azul claro, organizados exactamente en 5 por línea -->
             <div class="input-group">
                 <label>Selección de Módulos de Inspección</label>
                 <div class="buttons-grid">
