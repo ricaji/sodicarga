@@ -3,24 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sodicarga - Sistema de Gestión PESV</title>
+    <title>Sodicarga - Iniciar Sesión</title>
     <style>
-        :root {
-            --primary: #e30613;
-            --primary-dark: #b80510;
-            --bg-color: #f4f6f8;
-            --text-color: #222;
-        }
-
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background: var(--bg-color);
-            color: var(--text-color);
-        }
-
-        /* --- PANTALLA DE LOGIN --- */
-        #login-container {
+            background: #f4f6f8;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,8 +25,8 @@
             text-align: center;
         }
 
-        .login-card h1 {
-            color: var(--primary);
+        h1 {
+            color: #e30613;
             margin-bottom: 10px;
         }
 
@@ -49,38 +37,46 @@
         }
 
         .input-group {
-            margin-bottom: 15px;
             text-align: left;
+            margin-bottom: 20px;
         }
 
         .input-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-size: 14px;
             color: #333;
         }
 
-        .input-group input, .input-group select {
+        .input-group input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 1px solid #ccc;
             border-radius: 6px;
             box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .input-group input:focus {
+            border-color: #e30613;
+            outline: none;
         }
 
         button {
-            background: var(--primary);
+            background: #e30613;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px;
+            width: 100%;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: bold;
+            margin-top: 10px;
         }
 
         button:hover {
-            background: var(--primary-dark);
+            background: #b80510;
         }
 
         .error-msg {
@@ -89,388 +85,47 @@
             margin-top: 10px;
             display: none;
         }
-
-        /* --- PANEL PRINCIPAL CON MENÚ LATERAL --- */
-        #app-container {
-            display: none;
-            height: 100vh;
-            flex-direction: column;
-        }
-
-        .app-header {
-            background: var(--primary);
-            color: white;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .app-header h1 {
-            margin: 0;
-            font-size: 20px;
-        }
-
-        .main-layout {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
-
-        /* Menú lateral */
-        aside {
-            width: 280px;
-            background: white;
-            border-right: 1px solid #ddd;
-            overflow-y: auto;
-            padding: 20px 0;
-        }
-
-        aside h3 {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #888;
-            padding: 0 20px;
-            margin-bottom: 10px;
-        }
-
-        .menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .menu-item {
-            padding: 12px 20px;
-            cursor: pointer;
-            font-size: 14px;
-            color: #444;
-            border-left: 4px solid transparent;
-            transition: all 0.2s;
-        }
-
-        .menu-item:hover {
-            background: #f8f9fa;
-            color: var(--primary);
-        }
-
-        .menu-item.active {
-            background: #fff5f5;
-            color: var(--primary);
-            border-left-color: var(--primary);
-            font-weight: bold;
-        }
-
-        /* Contenido dinámico principal */
-        content {
-            flex: 1;
-            padding: 30px;
-            overflow-y: auto;
-            background: var(--bg-color);
-        }
-
-        .section-view {
-            display: none;
-        }
-
-        .section-view.active {
-            display: block;
-        }
-
-        .card {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 20px;
-        }
-
-        .card h2 {
-            color: var(--primary);
-            margin-top: 0;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-
-        th {
-            background: #f8f9fa;
-            color: #333;
-        }
-
-        .btn-danger {
-            background: #dc3545;
-            padding: 6px 12px;
-            font-size: 12px;
-        }
-        .btn-danger:hover { background: #bd2130; }
     </style>
 </head>
 <body>
 
-    <!-- ================= 1. PANTALLA DE LOGIN ================= -->
-    <div id="login-container">
-        <div class="login-card">
-            <h1>Sodicarga</h1>
-            <p class="subtitle">Inicia sesión como Administrador</p>
-            
-            <form id="loginForm">
-                <div class="input-group">
-                    <label for="usuario">Usuario</label>
-                    <input type="text" id="usuario" required placeholder="Usuario">
-                </div>
+    <div class="login-card">
+        <h1>Sodicarga</h1>
+        <p class="subtitle">Inicia sesión como Administrador</p>
+        
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="usuario">Usuario</label>
+                <input type="text" id="usuario" required placeholder="Usuario">
+            </div>
 
-                <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input type="password" id="password" required placeholder="••••••••">
-                </div>
+            <div class="input-group">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" required placeholder="••••••••">
+            </div>
 
-                <button type="submit" style="width: 100%; padding: 12px;">Ingresar</button>
-                <p id="errorLogin" class="error-msg">Usuario o contraseña incorrectos.</p>
-            </form>
-        </div>
+            <button type="submit">Ingresar</button>
+            <p id="errorLogin" class="error-msg">Usuario o contraseña incorrectos.</p>
+        </form>
     </div>
 
-    <!-- ================= 2. PANEL PRINCIPAL Y MENÚS ================= -->
-    <div id="app-container">
-        <header class="app-header">
-            <h1>Sodicarga - Panel de Control PESV</h1>
-            <button onclick="cerrarSesion()" style="background: #333;">Cerrar Sesión</button>
-        </header>
-
-        <div class="main-layout">
-            <!-- Menú Lateral -->
-            <aside>
-                <h3>Navegación</h3>
-                <ul class="menu-list">
-                    <li class="menu-item active" onclick="cambiarSeccion('usuarios', this)">Usuarios</li>
-                    <li class="menu-item" onclick="cambiarSeccion('documentacion', this)">Documentación</li>
-                    <li class="menu-item" onclick="cambiarSeccion('exterior', this)">Estado Exterior</li>
-                    <li class="menu-item" onclick="cambiarSeccion('llantas', this)">Llantas</li>
-                    <li class="menu-item" onclick="cambiarSeccion('iluminacion', this)">Iluminación y Señalización</li>
-                    <li class="menu-item" onclick="cambiarSeccion('mecanicos', this)">Sistemas Mecánicos</li>
-                    <li class="menu-item" onclick="cambiarSeccion('fluidos', this)">Fluidos</li>
-                    <li class="menu-item" onclick="cambiarSeccion('seguridad-activa', this)">Seguridad Activa/Pasiva</li>
-                    <li class="menu-item" onclick="cambiarSeccion('equipo-prevencion', this)">Equipo de Prevención y Seguridad</li>
-                    <li class="menu-item" onclick="cambiarSeccion('compartimiento', this)">Compartimiento Carga</li>
-                    <li class="menu-item" onclick="cambiarSeccion('trazabilidad', this)">Control de seguridad y trazabilidad</li>
-                </ul>
-            </aside>
-
-            <!-- Área de Contenido Dinámico -->
-            <content>
-                <!-- SECCIÓN: USUARIOS -->
-                <div id="usuarios" class="section-view active">
-                    <div class="card">
-                        <h2>Gestión de Usuarios</h2>
-                        <form id="userForm" style="margin-bottom: 20px;">
-                            <div style="display: flex; gap: 15px;">
-                                <div class="input-group" style="flex: 1;">
-                                    <label>Nombre de Usuario</label>
-                                    <input type="text" id="nuevoNombre" required placeholder="Ej: JuanPerez">
-                                </div>
-                                <div class="input-group" style="flex: 1;">
-                                    <label>Rol</label>
-                                    <select id="nuevoRol">
-                                        <option value="Conductor">Conductor</option>
-                                        <option value="Supervisor">Supervisor</option>
-                                        <option value="Administrador">Administrador</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button type="submit">Agregar Usuario</button>
-                        </form>
-
-                        <table>
-                            <thead>
-                                <tr><th>Usuario</th><th>Rol</th><th>Acciones</th></tr>
-                            </thead>
-                            <tbody id="tablaUsuarios"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: DOCUMENTACIÓN -->
-                <div id="documentacion" class="section-view">
-                    <div class="card">
-                        <h2>Documentación del Vehículo</h2>
-                        <p>Revisión de SOAT, Tecnomecánica, Tarjeta de Propiedad y Licencia de Conducción.</p>
-                        <!-- Espacio listo para agregar tus formularios o tablas -->
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: ESTADO EXTERIOR -->
-                <div id="exterior" class="section-view">
-                    <div class="card">
-                        <h2>Estado Exterior</h2>
-                        <p>Verificación de carrocería, vidrios, espejos y puertas.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: LLANTAS -->
-                <div id="llantas" class="section-view">
-                    <div class="card">
-                        <h2>Control de Llantas</h2>
-                        <p>Inspección de labrado, presión y estado general de los neumáticos.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: ILUMINACIÓN -->
-                <div id="iluminacion" class="section-view">
-                    <div class="card">
-                        <h2>Iluminación y Señalización</h2>
-                        <p>Verificación de farolas, direccionales, luces de freno, reversa y testigos.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: MECÁNICOS -->
-                <div id="mecanicos" class="section-view">
-                    <div class="card">
-                        <h2>Sistemas Mecánicos</h2>
-                        <p>Revisión de frenos, dirección, suspensión y transmisión.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: FLUIDOS -->
-                <div id="fluidos" class="section-view">
-                    <div class="card">
-                        <h2>Nivel de Fluidos</h2>
-                        <p>Control de aceite de motor, líquido de frenos, refrigerante y limpiaparabrisas.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: SEGURIDAD ACTIVA/PASIVA -->
-                <div id="seguridad-activa" class="section-view">
-                    <div class="card">
-                        <h2>Seguridad Activa y Pasiva</h2>
-                        <p>Revisión de cinturones de seguridad, airbags, bocina y elementos de control.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: EQUIPO DE PREVENCIÓN -->
-                <div id="equipo-prevencion" class="section-view">
-                    <div class="card">
-                        <h2>Equipo de Prevención y Seguridad</h2>
-                        <p>Verificación de kit de carretera, extintor, triángulos, gato y cruceta.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: COMPARTIMIENTO DE CARGA -->
-                <div id="compartimiento" class="section-view">
-                    <div class="card">
-                        <h2>Compartimiento de Carga</h2>
-                        <p>Inspección de aseguramiento, lonas, compuertas y distribución de peso.</p>
-                    </div>
-                </div>
-
-                <!-- SECCIÓN: TRAZABILIDAD -->
-                <div id="trazabilidad" class="section-view">
-                    <div class="card">
-                        <h2>Control de Seguridad y Trazabilidad</h2>
-                        <p>Historial y registro de reportes preoperacionales previos enviados por los conductores.</p>
-                    </div>
-                </div>
-            </content>
-        </div>
-    </div>
-
-    <!-- ================= 3. LÓGICA JAVASCRIPT ================= -->
     <script>
-        // Datos de usuarios en LocalStorage
-        let usuarios = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
-            { nombre: 'Administrador', rol: 'Administrador' },
-            { nombre: 'CarlosConductor', rol: 'Conductor' }
-        ];
-
-        // Autenticación
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
+            
             const user = document.getElementById('usuario').value;
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
+            // Valida las credenciales de Administrador
             if (user === 'Administrador' && pass === 'Tato2756*') {
-                document.getElementById('login-container').style.display = 'none';
-                document.getElementById('app-container').style.display = 'flex';
-                cargarUsuarios();
+                // Redirige a la carpeta o archivo de usuarios dentro del mismo sitio
+                window.location.href = './usuarios/'; 
             } else {
                 errorMsg.style.display = 'block';
             }
         });
-
-        // Cerrar Sesión
-        function cerrarSesion() {
-            document.getElementById('app-container').style.display = 'none';
-            document.getElementById('login-container').style.display = 'flex';
-            document.getElementById('loginForm').reset();
-            document.getElementById('errorLogin').style.display = 'none';
-        }
-
-        // Cambiar entre pestañas del menú lateral
-        function cambiarSeccion(idSeccion, elementoMenu) {
-            // Ocultar todas las secciones
-            document.querySelectorAll('.section-view').forEach(sec => {
-                sec.classList.remove('active');
-            });
-            // Mostrar la seleccionada
-            document.getElementById(idSeccion).classList.add('active');
-
-            // Quitar clase active de los elementos del menú y ponérsela al actual
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            elementoMenu.classList.add('active');
-        }
-
-        // Gestionar tabla de usuarios
-        function cargarUsuarios() {
-            const tbody = document.getElementById('tablaUsuarios');
-            tbody.innerHTML = '';
-
-            usuarios.forEach((u, index) => {
-                let fila = document.createElement('tr');
-                fila.innerHTML = `
-                    <td>${u.nombre}</td>
-                    <td>${u.rol}</td>
-                    <td><button class="btn-danger" onclick="eliminarUsuario(${index})">Eliminar</button></td>
-                `;
-                tbody.appendChild(fila);
-            });
-        }
-
-        document.getElementById('userForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const nombre = document.getElementById('nuevoNombre').value;
-            const rol = document.getElementById('nuevoRol').value;
-
-            usuarios.push({ nombre, rol });
-            localStorage.setItem('sodicarga_usuarios', JSON.stringify(usuarios));
-            
-            document.getElementById('nuevoNombre').value = '';
-            cargarUsuarios();
-        });
-
-        function eliminarUsuario(index) {
-            if(usuarios[index].nombre === 'Administrador') {
-                alert('No se puede eliminar al Administrador principal.');
-                return;
-            }
-            usuarios.splice(index, 1);
-            localStorage.setItem('sodicarga_usuarios', JSON.stringify(usuarios));
-            cargarUsuarios();
-        }
     </script>
+
 </body>
 </html>
