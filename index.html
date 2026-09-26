@@ -59,12 +59,6 @@
     </div>
 
     <script>
-        // Cargar usuarios guardados en LocalStorage (o usar por defecto)
-        let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
-            { nombre: 'Administrador', rol: 'Administrador' },
-            { nombre: 'CarlosConductor', rol: 'Conductor' }
-        ];
-
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
@@ -72,19 +66,25 @@
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // 1. Validar si es el Administrador principal con su contraseña secreta
-            if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
-                // Redirige a una página intermedia o panel del admin (puedes crear un archivo panel.html o redirigir directo a usuarios)
-                window.location.href = 'panel-admin.html';
-                return;
-            }
+            // Cargar usuarios registrados (incluye los creados y el Administrador por defecto)
+            let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
+                { nombre: 'Administrador', rol: 'Administrador', clave: 'Tato2756*' },
+                { nombre: 'CarlosConductor', rol: 'Conductor', clave: '1234' }
+            ];
 
-            // 2. Buscar si es otro usuario registrado en la lista
-            let usuarioEncontrado = usuariosRegistrados.find(u => u.nombre.toLowerCase() === user.toLowerCase());
+            // Buscar si coincide el nombre de usuario y la clave
+            let usuarioEncontrado = usuariosRegistrados.find(u => 
+                u.nombre.toLowerCase() === user.toLowerCase() && u.clave === pass
+            );
 
             if (usuarioEncontrado) {
-                // Los demás usuarios van directo al checklist (puedes pedir contraseña genérica si deseas)
-                window.location.href = 'checklist.html';
+                // Si es Administrador, va al panel de control de administración
+                if (usuarioEncontrado.rol === 'Administrador') {
+                    window.location.href = 'panel-admin.html';
+                } else {
+                    // Si es Conductor u otro rol, va directo a la página de checklist
+                    window.location.href = 'checklist.html';
+                }
             } else {
                 errorMsg.style.display = 'block';
             }
