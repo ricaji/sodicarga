@@ -42,7 +42,7 @@
 
     <div class="container">
         <h2>Inspección Diaria de Vehículos</h2>
-        <p style="color: #666; font-size: 14px;">Inspección obligatoria antes de iniciar la operación vial.</p>
+        <p style="color: #666; font-size: 14px;">Complete cada sección obligatoria antes de iniciar la operación vial.</p>
 
         <form id="pesvForm">
             <div class="form-grid">
@@ -72,10 +72,21 @@
                 </div>
             </div>
 
-            <h3 class="section-title">Ítems de Verificación</h3>
-
+            <!-- 1. DOCUMENTACIÓN -->
+            <h3 class="section-title">Documentación</h3>
             <div class="checklist-item">
-                <span>1. Estado Exterior (Carrocería, vidrios, espejos y puertas)</span>
+                <span>¿SOAT, Tecnomecánica, Tarjeta de Propiedad y Licencia al día?</span>
+                <div class="options">
+                    <label><input type="radio" name="doc" required> Bueno</label>
+                    <label><input type="radio" name="doc"> Malo</label>
+                    <label><input type="radio" name="doc"> N/A</label>
+                </div>
+            </div>
+
+            <!-- 2. ESTADO EXTERIOR -->
+            <h3 class="section-title">Estado Exterior</h3>
+            <div class="checklist-item">
+                <span>Carrocería, vidrios, espejos y puertas en buen estado</span>
                 <div class="options">
                     <label><input type="radio" name="ext" required> Bueno</label>
                     <label><input type="radio" name="ext"> Malo</label>
@@ -83,8 +94,10 @@
                 </div>
             </div>
 
+            <!-- 3. LLANTAS -->
+            <h3 class="section-title">Llantas</h3>
             <div class="checklist-item">
-                <span>2. Llantas (Presión, labrado y estado general)</span>
+                <span>Presión, labrado y estado general de los neumáticos</span>
                 <div class="options">
                     <label><input type="radio" name="llantas" required> Bueno</label>
                     <label><input type="radio" name="llantas"> Malo</label>
@@ -92,8 +105,10 @@
                 </div>
             </div>
 
+            <!-- 4. ILUMINACIÓN Y SEÑALIZACIÓN -->
+            <h3 class="section-title">Iluminación y Señalización</h3>
             <div class="checklist-item">
-                <span>3. Iluminación y Señalización (Farolas, direccionales, stop)</span>
+                <span>Farolas, direccionales, luces de freno y reversa operativas</span>
                 <div class="options">
                     <label><input type="radio" name="luz" required> Bueno</label>
                     <label><input type="radio" name="luz"> Malo</label>
@@ -101,8 +116,10 @@
                 </div>
             </div>
 
+            <!-- 5. SISTEMAS MECÁNICOS -->
+            <h3 class="section-title">Sistemas Mecánicos</h3>
             <div class="checklist-item">
-                <span>4. Sistemas Mecánicos (Frenos, dirección, suspensión)</span>
+                <span>Frenos, dirección, suspensión y transmisión</span>
                 <div class="options">
                     <label><input type="radio" name="mec" required> Bueno</label>
                     <label><input type="radio" name="mec"> Malo</label>
@@ -110,8 +127,10 @@
                 </div>
             </div>
 
+            <!-- 6. FLUIDOS -->
+            <h3 class="section-title">Fluidos</h3>
             <div class="checklist-item">
-                <span>5. Fluidos (Aceite, refrigerante, líquido de frenos)</span>
+                <span>Niveles de aceite, refrigerante, líquido de frenos y limpiaparabrisas</span>
                 <div class="options">
                     <label><input type="radio" name="flu" required> Bueno</label>
                     <label><input type="radio" name="flu"> Malo</label>
@@ -119,8 +138,10 @@
                 </div>
             </div>
 
+            <!-- 7. SEGURIDAD ACTIVA / PASIVA -->
+            <h3 class="section-title">Seguridad Activa / Pasiva</h3>
             <div class="checklist-item">
-                <span>6. Seguridad Activa / Pasiva (Cinturones, bocina, airbags)</span>
+                <span>Cinturones de seguridad, airbags, bocina y elementos de control</span>
                 <div class="options">
                     <label><input type="radio" name="seg" required> Bueno</label>
                     <label><input type="radio" name="seg"> Malo</label>
@@ -128,8 +149,10 @@
                 </div>
             </div>
 
+            <!-- 8. EQUIPO DE PREVENCIÓN Y SEGURIDAD -->
+            <h3 class="section-title">Equipo de Prevención y Seguridad</h3>
             <div class="checklist-item">
-                <span>7. Equipo de Prevención y Seguridad (Kit de carretera, extintor)</span>
+                <span>Kit de carretera, extintor vigente, triángulos, cruceta y gato</span>
                 <div class="options">
                     <label><input type="radio" name="eq" required> Bueno</label>
                     <label><input type="radio" name="eq"> Malo</label>
@@ -137,12 +160,25 @@
                 </div>
             </div>
 
+            <!-- 9. COMPARTIMIENTO DE CARGA -->
+            <h3 class="section-title">Compartimiento Carga</h3>
             <div class="checklist-item">
-                <span>8. Compartimiento de Carga (Aseguramiento, compuertas)</span>
+                <span>Aseguramiento de carga, lonas, compuertas y estabilidad</span>
                 <div class="options">
                     <label><input type="radio" name="carga" required> Bueno</label>
                     <label><input type="radio" name="carga"> Malo</label>
                     <label><input type="radio" name="carga"> N/A</label>
+                </div>
+            </div>
+
+            <!-- 10. CONTROL DE SEGURIDAD Y TRAZABILIDAD -->
+            <h3 class="section-title">Control de Seguridad y Trazabilidad</h3>
+            <div class="checklist-item">
+                <span>Verificación final de cierre, bitácora y autorización de salida</span>
+                <div class="options">
+                    <label><input type="radio" name="traz" required> Bueno</label>
+                    <label><input type="radio" name="traz"> Malo</label>
+                    <label><input type="radio" name="traz"> N/A</label>
                 </div>
             </div>
 
@@ -153,7 +189,7 @@
     <script>
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
+            alert('¡Checklist Preoperacional PESV completo enviado con éxito!');
             window.location.href = 'usuarios.html';
         });
     </script>
