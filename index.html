@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sodicarga</title>
+    <title>Sodicarga - Checklist Preoperacional</title>
 
     <style>
         body {
@@ -29,8 +29,33 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        h1 {
+        h1, h2 {
+            color: #222;
+        }
+
+        header h1 {
+            color: white;
             margin: 0;
+        }
+
+        .section-title {
+            border-bottom: 2px solid #e30613;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            color: #e30613;
+        }
+
+        .checklist-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .options label {
+            margin-left: 15px;
+            cursor: pointer;
         }
 
         button {
@@ -40,6 +65,8 @@
             padding: 12px 25px;
             border-radius: 6px;
             cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
         }
 
         button:hover {
@@ -52,18 +79,65 @@
 
     <header>
         <h1>Sodicarga</h1>
-        <p>Bienvenido a nuestra página web</p>
+        <p>Inspección diaria antes de iniciar la operación - PESV</p>
     </header>
 
     <main>
-        <h2>Hola 👋</h2>
-        <p>
-            Esta es la página web de Sodicarga.
-        </p>
+        <h2>Control Preoperacional</h2>
+        <p>Por favor, complete la verificación diaria correspondiente al vehículo antes de iniciar la ruta.</p>
 
-        <button onclick="alert('¡Bienvenido a Sodicarga!')">
-            Haz clic aquí
-        </button>
+        <h3 class="section-title">Preguntas de Inspección</h3>
+        
+        <form>
+            <div class="checklist-item">
+                <span>1. ¿El estado de los neumáticos, presión y labrado es óptimo?</span>
+                <div class="options">
+                    <label><input type="radio" name="p1" required> Sí</label>
+                    <label><input type="radio" name="p1"> No</label>
+                    <label><input type="radio" name="p1"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>2. ¿Funcionan correctamente los frenos de servicio y de parqueo?</span>
+                <div class="options">
+                    <label><input type="radio" name="p2" required> Sí</label>
+                    <label><input type="radio" name="p2"> No</label>
+                    <label><input type="radio" name="p2"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>3. ¿El sistema de luces (farolas, direccionales, stop, reversa) opera bien?</span>
+                <div class="options">
+                    <label><input type="radio" name="p3" required> Sí</label>
+                    <label><input type="radio" name="p3"> No</label>
+                    <label><input type="radio" name="p3"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>4. ¿Se encuentran los niveles de fluidos (aceite, refrigerante, frenos) en orden?</span>
+                <div class="options">
+                    <label><input type="radio" name="p4" required> Sí</label>
+                    <label><input type="radio" name="p4"> No</label>
+                    <label><input type="radio" name="p4"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>5. ¿Cuenta con el equipo de carretera y la tornillería/kit de emergencia completos?</span>
+                <div class="options">
+                    <label><input type="radio" name="p5" required> Sí</label>
+                    <label><input type="radio" name="p5"> No</label>
+                    <label><input type="radio" name="p5"> N/A</label>
+                </div>
+            </div>
+
+            <button type="button" onclick="alert('¡Checklist enviado con éxito para Sodicarga!')">
+                Enviar Inspección
+            </button>
+        </form>
     </main>
 
 </body>
