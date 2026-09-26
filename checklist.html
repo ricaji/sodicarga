@@ -84,6 +84,54 @@
         .summary-card { background: white; padding: 10px 4px; border-radius: 6px; border: 1px solid #ccc; }
         .summary-card span { display: block; font-size: 10px; color: #666; margin-bottom: 3px; font-weight: bold; }
         .summary-card strong { font-size: 15px; color: #e30613; }
+
+        /* Cuadro de Fotos */
+        .photo-box {
+            background: #f8f9fa;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .photo-box h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        .photo-input-container {
+            display: inline-block;
+            background: #e30613;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        .photo-input-container:hover {
+            background: #b80510;
+        }
+        .photo-input-container input[type="file"] {
+            display: none;
+        }
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .preview-thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
         
         button.btn-submit {
             background: #e30613; color: white; border: none; padding: 14px;
@@ -94,10 +142,10 @@
         /* --- MEDIA QUERIES PARA CELULARES Y TABLETS --- */
         @media (max-width: 768px) {
             .container { margin: 10px; padding: 15px; }
-            .form-grid { grid-template-columns: 1fr; } /* Pasa los datos generales a 1 sola columna en móviles */
-            .buttons-grid { grid-template-columns: repeat(2, 1fr); } /* Los botones pasan a 2 por línea en celulares */
-            .sub-controls { grid-template-columns: 1fr; } /* Las preguntas pasan los controles en columna vertical para que no se compriman */
-            .summary-grid { grid-template-columns: repeat(2, 1fr); } /* El resumen se acomoda mejor en pantallas chicas */
+            .form-grid { grid-template-columns: 1fr; }
+            .buttons-grid { grid-template-columns: repeat(2, 1fr); }
+            .sub-controls { grid-template-columns: 1fr; }
+            .summary-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
@@ -307,6 +355,21 @@
                 </div>
             </div>
 
+            <!-- SECCIÓN DE FOTOS -->
+            <div class="photo-box">
+                <h3>Registro Fotográfico</h3>
+                <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Tome una foto con la cámara del celular o suba imágenes desde su dispositivo</p>
+                
+                <label class="photo-input-container">
+                    Tomar o Subir Fotos
+                    <!-- accept="image/*" y capture="environment" permiten abrir la cámara en celulares o elegir archivos en PC -->
+                    <input type="file" id="fotoInput" accept="image/*" capture="environment" multiple onchange="mostrarVistaPrevia(event)">
+                </label>
+
+                <!-- Contenedor donde aparecerán las miniaturas de las fotos seleccionadas -->
+                <div id="previewContainer" class="preview-container"></div>
+            </div>
+
             <button type="submit" class="btn-submit">Enviar Checklist Preoperacional</button>
         </form>
     </div>
@@ -347,9 +410,29 @@
             document.getElementById('lbl-porcentaje').innerText = porcentaje.toFixed(1) + '%';
         }
 
+        // Función para mostrar miniaturas de las fotos seleccionadas o capturadas
+        function mostrarVistaPrevia(event) {
+            const previewContainer = document.getElementById('previewContainer');
+            const files = event.target.files;
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-thumbnail';
+                    previewContainer.appendChild(img);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        }
+
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
+            alert('¡Checklist Preoperacional PESV junto con las fotos guardado y enviado con éxito!');
             window.location.href = 'usuarios.html';
         });
     </script>
