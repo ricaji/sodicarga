@@ -430,11 +430,135 @@
             }
         }
 
+        <script>
+        function mostrarSeccion(idSeccion, btn) {
+            const seccionActual = document.getElementById(idSeccion);
+            const estaActiva = seccionActual.classList.contains('active');
+
+            document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.buttons-grid .option-btn').forEach(b => b.classList.remove('selected'));
+
+            if (!estaActiva) {
+                seccionActual.classList.add('active');
+                btn.classList.add('selected');
+            }
+        }
+
+        function calcularTotales() {
+            const selects = document.querySelectorAll('.eval-select');
+            let cumple = 0;
+            let noCumple = 0;
+            let noAplica = 0;
+            const totalItems = 90;
+
+            selects.forEach(sel => {
+                if (sel.value === 'Cumple') cumple++;
+                else if (sel.value === 'No Cumple') noCumple++;
+                else if (sel.value === 'No Aplica') noAplica++;
+            });
+
+            let denominador = totalItems - noAplica;
+            let porcentaje = denominador > 0 ? (cumple / denominador) * 100 : 0;
+
+            document.getElementById('lbl-cumple').innerText = cumple;
+            document.getElementById('lbl-nocumple').innerText = noCumple;
+            document.getElementById('lbl-noaplica').innerText = noAplica;
+            document.getElementById('lbl-porcentaje').innerText = porcentaje.toFixed(1) + '%';
+        }
+
+        let fotosBase64 = [];
+        function mostrarVistaPrevia(event) {
+            const previewContainer = document.getElementById('previewContainer');
+            const files = event.target.files;
+            fotosBase64 = []; // Limpiar si se seleccionan nuevas
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    fotosBase64.push(e.target.result); // Guardar en base64 para enviar
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'preview-thumbnail';
+                    previewContainer.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // ENVÍO DE DATOS A GOOGLE DRIVE (GOOGLE SHEETS)
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('¡Checklist Preoperacional PESV junto con las fotos guardado y enviado con éxito!');
-            window.location.href = 'usuarios.html';
+
+            // URL de tu Web App de Google Apps Script (La pondrás aquí en el Paso 2)
+            const URL_APPS_SCRIPT = "https://script.google.com/macros/s/AKfycbx3y2h20FPcX3GMjWR_5nE1y0NnxJwc-zgYx1TCY6_AzsdhznYHEUkDIT4YJ4TW_XBW/exec";
+
+            if (URL_APPS_SCRIPT === "https://script.google.com/macros/s/AKfycbx3y2h20FPcX3GMjWR_5nE1y0NnxJwc-zgYx1TCY6_AzsdhznYHEUkDIT4YJ4TW_XBW/exec") {
+                alert("Por favor configura la URL de Google Apps Script en el código.");
+                return;
+            }
+
+            // Recolectar datos generales
+            const inputsGenerales = document.querySelectorAll('.form-grid input, input[placeholder="Nombre de quien inspecciona"]');
+            
+            // Recolectar todas las respuestas de evaluación
+            const itemsEvaluacion = [];
+            document.querySelectorAll('.sub-item').forEach((item, index) => {
+                const pregunta = item.querySelector('p').innerText;
+                const evaluacion = item.querySelector('select').value;
+                const observaciones = item.querySelectorAll('input[type="text"]')[0].value;
+                const accion = item.querySelectorAll('input[type="text"]')[1].value;
+                itemsEvaluacion.push({ pregunta, evaluacion, observaciones, accion });
+            });
+
+            const datosFormulario = {
+                fecha: inputsGenerales[0].value,
+                hora: inputsGenerales[1].value,
+                placa: inputsGenerales[2].value,
+                tipoVehiculo: inputsGenerales[3].value,
+                marca: inputsGenerales[4].value,
+                modelo: inputsGenerales[5].value,
+                kilometraje: inputsGenerales[6].value,
+                conductor: inputsGenerales[7].value,
+                cedula: inputsGenerales[8].value,
+                empresa: inputsGenerales[9].value,
+                cliente: inputsGenerales[10].value,
+                origen: inputsGenerales[11].value,
+                destino: inputsGenerales[12].value,
+                tipoCarga: inputsGenerales[13].value,
+                responsable: inputsGenerales[14].value,
+                totalItems: 90,
+                cumple: document.getElementById('lbl-cumple').innerText,
+                noCumple: document.getElementById('lbl-nocumple').innerText,
+                noAplica: document.getElementById('lbl-noaplica').innerText,
+                porcentajeCumplimiento: document.getElementById('lbl-porcentaje').innerText,
+                detalleEvaluacion: itemsEvaluacion,
+                fotos: fotosBase64
+            };
+
+            const btnSubmit = document.querySelector('.btn-submit');
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "Enviando al sistema y Drive...";
+
+            fetch(URL_APPS_SCRIPT, {
+                method: 'POST',
+                body: JSON.stringify(datosFormulario)
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('¡Checklist y fotos guardados con éxito en Google Drive!');
+                window.location.href = 'usuarios.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al guardar los datos.');
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Enviar Checklist Preoperacional";
+            });
         });
+    </script>
+        );
     </script>
 </body>
 </html>
