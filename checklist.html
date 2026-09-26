@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodicarga - Checklist Preoperacional PESV</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #222; }
+        header {
+            background: #e30613; color: white; padding: 20px 30px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        header h1 { margin: 0; font-size: 20px; }
+        .nav-links button {
+            background: white; color: #e30613; border: none; padding: 8px 15px;
+            border-radius: 6px; cursor: pointer; font-weight: bold;
+        }
+        .container { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h2 { color: #e30613; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
+        .input-group { text-align: left; }
+        .input-group label { display: block; margin-bottom: 5px; font-size: 14px; font-weight: bold; color: #333; }
+        .input-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 18px; }
+        .checklist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f1f1; }
+        .options label { margin-left: 15px; cursor: pointer; font-weight: normal; }
+        button.btn-submit {
+            background: #e30613; color: white; border: none; padding: 12px 25px;
+            border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold; margin-top: 30px; width: 100%;
+        }
+        button.btn-submit:hover { background: #b80510; }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>Sodicarga - Checklist Preoperacional PESV</h1>
+        <div class="nav-links">
+            <button onclick="window.location.href='usuarios.html'">Volver a Usuarios</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>Inspección Diaria de Vehículos</h2>
+        <p style="color: #666; font-size: 14px;">Inspección obligatoria antes de iniciar la operación vial.</p>
+
+        <form id="pesvForm">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Fecha</label>
+                    <input type="date" required>
+                </div>
+                <div class="input-group">
+                    <label>Hora de Inspección</label>
+                    <input type="time" required>
+                </div>
+                <div class="input-group">
+                    <label>Placa del Vehículo</label>
+                    <input type="text" placeholder="Ej: ABC-123" required>
+                </div>
+                <div class="input-group">
+                    <label>Conductor</label>
+                    <input type="text" placeholder="Nombre del conductor" required>
+                </div>
+                <div class="input-group">
+                    <label>Kilometraje</label>
+                    <input type="number" placeholder="Kilometraje actual" required>
+                </div>
+                <div class="input-group">
+                    <label>Responsable de Inspección</label>
+                    <input type="text" placeholder="Nombre del supervisor" required>
+                </div>
+            </div>
+
+            <h3 class="section-title">Ítems de Verificación</h3>
+
+            <div class="checklist-item">
+                <span>1. Estado Exterior (Carrocería, vidrios, espejos y puertas)</span>
+                <div class="options">
+                    <label><input type="radio" name="ext" required> Bueno</label>
+                    <label><input type="radio" name="ext"> Malo</label>
+                    <label><input type="radio" name="ext"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>2. Llantas (Presión, labrado y estado general)</span>
+                <div class="options">
+                    <label><input type="radio" name="llantas" required> Bueno</label>
+                    <label><input type="radio" name="llantas"> Malo</label>
+                    <label><input type="radio" name="llantas"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>3. Iluminación y Señalización (Farolas, direccionales, stop)</span>
+                <div class="options">
+                    <label><input type="radio" name="luz" required> Bueno</label>
+                    <label><input type="radio" name="luz"> Malo</label>
+                    <label><input type="radio" name="luz"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>4. Sistemas Mecánicos (Frenos, dirección, suspensión)</span>
+                <div class="options">
+                    <label><input type="radio" name="mec" required> Bueno</label>
+                    <label><input type="radio" name="mec"> Malo</label>
+                    <label><input type="radio" name="mec"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>5. Fluidos (Aceite, refrigerante, líquido de frenos)</span>
+                <div class="options">
+                    <label><input type="radio" name="flu" required> Bueno</label>
+                    <label><input type="radio" name="flu"> Malo</label>
+                    <label><input type="radio" name="flu"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>6. Seguridad Activa / Pasiva (Cinturones, bocina, airbags)</span>
+                <div class="options">
+                    <label><input type="radio" name="seg" required> Bueno</label>
+                    <label><input type="radio" name="seg"> Malo</label>
+                    <label><input type="radio" name="seg"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>7. Equipo de Prevención y Seguridad (Kit de carretera, extintor)</span>
+                <div class="options">
+                    <label><input type="radio" name="eq" required> Bueno</label>
+                    <label><input type="radio" name="eq"> Malo</label>
+                    <label><input type="radio" name="eq"> N/A</label>
+                </div>
+            </div>
+
+            <div class="checklist-item">
+                <span>8. Compartimiento de Carga (Aseguramiento, compuertas)</span>
+                <div class="options">
+                    <label><input type="radio" name="carga" required> Bueno</label>
+                    <label><input type="radio" name="carga"> Malo</label>
+                    <label><input type="radio" name="carga"> N/A</label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Enviar Checklist Preoperacional</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('pesvForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
+            window.location.href = 'usuarios.html';
+        });
+    </script>
+</body>
+</html>
