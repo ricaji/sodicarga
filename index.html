@@ -66,23 +66,22 @@
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // Cargar usuarios registrados (incluye los creados y el Administrador por defecto)
-            let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
-                { nombre: 'Administrador', rol: 'Administrador', clave: 'Tato2756*' },
-                { nombre: 'CarlosConductor', rol: 'Conductor', clave: '1234' }
-            ];
+            // 1. Verificación directa y segura para el Administrador principal
+            if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
+                window.location.href = 'panel-admin.html';
+                return;
+            }
 
-            // Buscar si coincide el nombre de usuario y la clave
+            // 2. Verificación para los demás usuarios creados en LocalStorage
+            let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [];
             let usuarioEncontrado = usuariosRegistrados.find(u => 
                 u.nombre.toLowerCase() === user.toLowerCase() && u.clave === pass
             );
 
             if (usuarioEncontrado) {
-                // Si es Administrador, va al panel de control de administración
                 if (usuarioEncontrado.rol === 'Administrador') {
                     window.location.href = 'panel-admin.html';
                 } else {
-                    // Si es Conductor u otro rol, va directo a la página de checklist
                     window.location.href = 'checklist.html';
                 }
             } else {
