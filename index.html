@@ -14,7 +14,6 @@
             align-items: center;
             height: 100vh;
         }
-
         .login-card {
             background: white;
             padding: 40px;
@@ -24,86 +23,36 @@
             max-width: 400px;
             text-align: center;
         }
-
-        h1 {
-            color: #e30613;
-            margin-bottom: 10px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #333;
-        }
-
+        h1 { color: #e30613; margin-bottom: 10px; }
+        .subtitle { color: #666; font-size: 14px; margin-bottom: 30px; }
+        .input-group { text-align: left; margin-bottom: 20px; }
+        .input-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #333; }
         .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-size: 14px;
+            width: 100%; padding: 12px; border: 1px solid #ccc;
+            border-radius: 6px; box-sizing: border-box; font-size: 14px;
         }
-
-        .input-group input:focus {
-            border-color: #e30613;
-            outline: none;
-        }
-
         button {
-            background: #e30613;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            margin-top: 10px;
+            background: #e30613; color: white; border: none; padding: 12px;
+            width: 100%; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold;
         }
-
-        button:hover {
-            background: #b80510;
-        }
-
-        .error-msg {
-            color: #dc3545;
-            font-size: 13px;
-            margin-top: 10px;
-            display: none;
-        }
+        button:hover { background: #b80510; }
+        .error-msg { color: #dc3545; font-size: 13px; margin-top: 10px; display: none; }
     </style>
 </head>
 <body>
-
     <div class="login-card">
         <h1>Sodicarga</h1>
-        <p class="subtitle">Inicia sesión como Administrador</p>
+        <p class="subtitle">Inicia sesión en el sistema</p>
         
         <form id="loginForm">
             <div class="input-group">
                 <label for="usuario">Usuario</label>
                 <input type="text" id="usuario" required placeholder="Usuario">
             </div>
-
             <div class="input-group">
                 <label for="password">Contraseña</label>
                 <input type="password" id="password" required placeholder="••••••••">
             </div>
-
             <button type="submit">Ingresar</button>
             <p id="errorLogin" class="error-msg">Usuario o contraseña incorrectos.</p>
         </form>
@@ -112,20 +61,18 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            
             const user = document.getElementById('usuario').value;
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // Valida las credenciales de Administrador
+            // Validación de Administrador
             if (user === 'Administrador' && pass === 'Tato2756*') {
-                // Redirige a la carpeta o archivo de usuarios dentro del mismo sitio
-                window.location.href = './usuarios/'; 
+                // Redirige al panel de administración de usuarios
+                window.location.href = 'usuarios.html';
             } else {
                 errorMsg.style.display = 'block';
             }
         });
     </script>
-
 </body>
 </html>
