@@ -15,15 +15,36 @@
             background: white; color: #e30613; border: none; padding: 8px 15px;
             border-radius: 6px; cursor: pointer; font-weight: bold;
         }
-        .container { max-width: 900px; margin: 30px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .container { max-width: 1000px; margin: 30px auto; padding: 30px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         h2 { color: #e30613; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
         
         /* Estructura en dos columnas para los datos generales */
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; }
         .input-group { text-align: left; }
         .input-group label { display: block; margin-bottom: 5px; font-size: 13px; font-weight: bold; color: #444; }
         .input-group input, .input-group select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
         
+        /* Contenedor de opciones en una sola línea */
+        .single-line-options {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 12px 10px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 25px;
+        }
+        .single-line-options label {
+            font-size: 13px;
+            font-weight: normal;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
         .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
         .checklist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
         .options label { margin-left: 15px; cursor: pointer; font-weight: normal; }
@@ -112,6 +133,23 @@
             <div class="input-group" style="margin-bottom: 20px;">
                 <label>Responsable inspección</label>
                 <input type="text" placeholder="Nombre de quien inspecciona" required>
+            </div>
+
+            <!-- Opciones requeridas en una sola línea debajo de Responsable inspección -->
+            <div class="input-group">
+                <label>Selección de Categorías / Módulos de Inspección</label>
+                <div class="single-line-options">
+                    <label><input type="checkbox" name="cat" value="Documentacion"> Documentación</label>
+                    <label><input type="checkbox" name="cat" value="Estado Exterior"> Estado Exterior</label>
+                    <label><input type="checkbox" name="cat" value="Llantas"> Llantas</label>
+                    <label><input type="checkbox" name="cat" value="Iluminacion"> Iluminación y señalización</label>
+                    <label><input type="checkbox" name="cat" value="Sistemas Mecánicos"> Sistemas Mecánicos</label>
+                    <label><input type="checkbox" name="cat" value="Fluidos"> Fluidos</label>
+                    <label><input type="checkbox" name="cat" value="Seguridad Activa/Pasiva"> Seguridad Activa/Pasiva</label>
+                    <label><input type="checkbox" name="cat" value="Equipo Prevención/Seguridad"> Equipo de Prevención/Seguridad</label>
+                    <label><input type="checkbox" name="cat" value="Compartimiento Carga"> Compartimiento Carga</label>
+                    <label><input type="checkbox" name="cat" value="Control Seguridad/Trazabilidad"> Control Seguridad/Trazabilidad</label>
+                </div>
             </div>
 
             <!-- Ítems de Verificación -->
