@@ -22,14 +22,15 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 20px;
         }
         h2 { color: #e30613; margin-top: 0; }
-        .input-group { margin-bottom: 15px; text-align: left; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+        .input-group { text-align: left; }
         .input-group label { display: block; margin-bottom: 5px; font-size: 14px; color: #333; }
         .input-group input, .input-group select {
             width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box;
         }
         button.btn-primary {
             background: #e30613; color: white; border: none; padding: 10px 20px;
-            border-radius: 6px; cursor: pointer; font-weight: bold;
+            border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%;
         }
         button.btn-primary:hover { background: #b80510; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
@@ -44,6 +45,7 @@
     <header>
         <h1>Sodicarga - Panel de Administración</h1>
         <div class="nav-links">
+            <button onclick="window.location.href='panel-admin.html'">Panel Admin</button>
             <button onclick="window.location.href='checklist.html'">Ir al Checklist PESV</button>
             <button onclick="window.location.href='index.html'" style="background: #333; color: white;">Cerrar Sesión</button>
         </div>
@@ -53,12 +55,16 @@
         <div class="card">
             <h2>Crear Nuevo Usuario</h2>
             <form id="userForm">
-                <div style="display: flex; gap: 15px;">
-                    <div class="input-group" style="flex: 1;">
+                <div class="form-grid">
+                    <div class="input-group">
                         <label>Nombre de Usuario</label>
                         <input type="text" id="nuevoNombre" required placeholder="Ej: JuanPerez">
                     </div>
-                    <div class="input-group" style="flex: 1;">
+                    <div class="input-group">
+                        <label>Contraseña</label>
+                        <input type="password" id="nuevaClave" required placeholder="••••••••">
+                    </div>
+                    <div class="input-group">
                         <label>Rol</label>
                         <select id="nuevoRol">
                             <option value="Conductor">Conductor</option>
@@ -67,7 +73,7 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn-primary">Agregar Usuario</button>
+                <button type="submit" class="btn-primary">Guardar Usuario</button>
             </form>
         </div>
 
@@ -84,8 +90,8 @@
 
     <script>
         let usuarios = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
-            { nombre: 'Administrador', rol: 'Administrador' },
-            { nombre: 'CarlosConductor', rol: 'Conductor' }
+            { nombre: 'Administrador', rol: 'Administrador', clave: 'Tato2756*' },
+            { nombre: 'CarlosConductor', rol: 'Conductor', clave: '1234' }
         ];
 
         function cargarUsuarios() {
@@ -104,11 +110,14 @@
 
         document.getElementById('userForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const nombre = document.getElementById('nuevoNombre').value;
+            const nombre = document.getElementById('nuevoNombre').value.trim();
+            const clave = document.getElementById('nuevaClave').value;
             const rol = document.getElementById('nuevoRol').value;
-            usuarios.push({ nombre, rol });
+
+            usuarios.push({ nombre, rol, clave });
             localStorage.setItem('sodicarga_usuarios', JSON.stringify(usuarios));
-            document.getElementById('nuevoNombre').value = '';
+            
+            document.getElementById('userForm').reset();
             cargarUsuarios();
         });
 
