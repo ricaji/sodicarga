@@ -67,8 +67,8 @@
                     <div class="input-group">
                         <label>Rol</label>
                         <select id="nuevoRol">
-                            <option value="Conductor">Conductor</option>
-                            <option value="Supervisor">Supervisor</option>
+                            <option value="Logistico">Logistico</option>
+                            <option value="Director">Director</option>
                             <option value="Administrador">Administrador</option>
                         </select>
                     </div>
@@ -91,7 +91,7 @@
     <script>
         let usuarios = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
             { nombre: 'Administrador', rol: 'Administrador', clave: 'Tato2756*' },
-            { nombre: 'CarlosConductor', rol: 'Conductor', clave: '1234' }
+            { nombre: 'CarlosConductor', rol: 'Administrador', clave: '1234' }
         ];
 
         function cargarUsuarios() {
