@@ -59,17 +59,32 @@
     </div>
 
     <script>
+        // Cargar usuarios guardados en LocalStorage (o usar por defecto)
+        let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [
+            { nombre: 'Administrador', rol: 'Administrador' },
+            { nombre: 'CarlosConductor', rol: 'Conductor' }
+        ];
+
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
             
-            // .trim() elimina espacios vacíos al inicio o final por error
             const user = document.getElementById('usuario').value.trim();
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // Acepta 'Administrador' o 'administrador' y la clave exacta
+            // 1. Validar si es el Administrador principal con su contraseña secreta
             if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
-                window.location.href = 'usuarios.html';
+                // Redirige a una página intermedia o panel del admin (puedes crear un archivo panel.html o redirigir directo a usuarios)
+                window.location.href = 'panel-admin.html';
+                return;
+            }
+
+            // 2. Buscar si es otro usuario registrado en la lista
+            let usuarioEncontrado = usuariosRegistrados.find(u => u.nombre.toLowerCase() === user.toLowerCase());
+
+            if (usuarioEncontrado) {
+                // Los demás usuarios van directo al checklist (puedes pedir contraseña genérica si deseas)
+                window.location.href = 'checklist.html';
             } else {
                 errorMsg.style.display = 'block';
             }
