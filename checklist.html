@@ -32,9 +32,9 @@
             margin-bottom: 25px;
         }
         .option-btn {
-            background: #e3f2fd; /* Azul claro */
-            border: 2px solid #90caf9; /* Borde azul claro sutil */
-            color: #0d47a1; /* Texto azul oscuro para buena visibilidad */
+            background: #e3f2fd;
+            border: 2px solid #90caf9;
+            color: #0d47a1;
             padding: 14px 10px;
             border-radius: 8px;
             font-size: 12px;
@@ -47,14 +47,62 @@
             background: #bbdefb;
             border-color: #64b5f6;
         }
-        /* Estilo cuando el botón está seleccionado (cambia a un azul más intenso) */
         .option-btn.selected {
             background: #1976d2;
             color: white;
             border-color: #1565c0;
         }
 
+        /* Secciones desplegables */
+        .section-content {
+            display: none;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .section-content.active {
+            display: block;
+        }
+
         .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
+        
+        /* Estilo para las subpreguntas detalladas de Documentación */
+        .doc-item {
+            background: white;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .doc-item p {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            font-size: 14px;
+            color: #333;
+        }
+        .doc-controls {
+            display: grid;
+            grid-template-columns: 150px 1fr 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+        .doc-controls input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+            box-sizing: border-box;
+        }
+        .radio-group label {
+            margin-right: 10px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
         .checklist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
         .options label { margin-left: 15px; cursor: pointer; font-weight: normal; }
         
@@ -79,7 +127,7 @@
         <p style="color: #666; font-size: 13px; margin-bottom: 25px;">Inspección diaria antes de iniciar la operación</p>
 
         <form id="pesvForm">
-            <!-- Datos Generales de la Inspección (Dos columnas) -->
+            <!-- Datos Generales de la Inspección -->
             <div class="form-grid">
                 <div class="input-group">
                     <label>Fecha</label>
@@ -144,11 +192,11 @@
                 <input type="text" placeholder="Nombre de quien inspecciona" required>
             </div>
 
-            <!-- Botones en azul claro, organizados exactamente en 5 por línea -->
+            <!-- Botones de Módulos (5 por línea, color azul claro) -->
             <div class="input-group">
-                <label>Selección de Módulos de Inspección</label>
+                <label>Selección de Módulos de Inspección (Haga clic para desplegar)</label>
                 <div class="buttons-grid">
-                    <div class="option-btn" onclick="toggleBtn(this)">Documentación</div>
+                    <div class="option-btn" onclick="toggleSeccion('seccion-documentacion', this)">Documentación</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Estado Exterior</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Llantas</div>
                     <div class="option-btn" onclick="toggleBtn(this)">Iluminación y señalización</div>
@@ -161,20 +209,94 @@
                 </div>
             </div>
 
-            <!-- Ítems de Verificación -->
-            <div class="section-title">Ítems de Verificación Operativa</div>
+            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN -->
+            <div id="seccion-documentacion" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
+                
+                <div class="doc-item">
+                    <p>1. Licencia de tránsito disponible y vigente</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc1" required> C</label>
+                            <label><input type="radio" name="doc1"> NC</label>
+                            <label><input type="radio" name="doc1"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
 
-            <div class="checklist-item">
-                <span>1. Documentación (SOAT, Tecnomecánica, Tarjeta de Propiedad y Licencia)</span>
-                <div class="options">
-                    <label><input type="radio" name="doc" required> Bueno</label>
-                    <label><input type="radio" name="doc"> Malo</label>
-                    <label><input type="radio" name="doc"> N/A</label>
+                <div class="doc-item">
+                    <p>2. SOAT vigente</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc2" required> C</label>
+                            <label><input type="radio" name="doc2"> NC</label>
+                            <label><input type="radio" name="doc2"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="doc-item">
+                    <p>3. Revisión técnico-mecánica vigente, cuando aplique</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc3" required> C</label>
+                            <label><input type="radio" name="doc3"> NC</label>
+                            <label><input type="radio" name="doc3"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="doc-item">
+                    <p>4. Licencia de conducción vigente y categoría correspondiente</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc4" required> C</label>
+                            <label><input type="radio" name="doc4"> NC</label>
+                            <label><input type="radio" name="doc4"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="doc-item">
+                    <p>5. Documentos adicionales exigidos para la operación</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc5" required> C</label>
+                            <label><input type="radio" name="doc5"> NC</label>
+                            <label><input type="radio" name="doc5"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
+                </div>
+
+                <div class="doc-item">
+                    <p>6. Documentación de la carga disponible</p>
+                    <div class="doc-controls">
+                        <div class="radio-group">
+                            <label><input type="radio" name="doc6" required> C</label>
+                            <label><input type="radio" name="doc6"> NC</label>
+                            <label><input type="radio" name="doc6"> NA</label>
+                        </div>
+                        <input type="text" placeholder="Observaciones">
+                        <input type="text" placeholder="Acción / responsable">
+                    </div>
                 </div>
             </div>
 
+            <!-- Ítems Generales de Verificación -->
+            <div class="section-title">Ítems de Verificación Operativa Restantes</div>
+
             <div class="checklist-item">
-                <span>2. Estado Exterior (Carrocería, vidrios, espejos y puertas)</span>
+                <span>Estado Exterior (Carrocería, vidrios, espejos y puertas)</span>
                 <div class="options">
                     <label><input type="radio" name="ext" required> Bueno</label>
                     <label><input type="radio" name="ext"> Malo</label>
@@ -183,7 +305,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>3. Llantas (Presión, labrado y estado general)</span>
+                <span>Llantas (Presión, labrado y estado general)</span>
                 <div class="options">
                     <label><input type="radio" name="llantas" required> Bueno</label>
                     <label><input type="radio" name="llantas"> Malo</label>
@@ -192,7 +314,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>4. Iluminación y Señalización (Farolas, direccionales, stop, reversa)</span>
+                <span>Iluminación y Señalización (Farolas, direccionales, stop, reversa)</span>
                 <div class="options">
                     <label><input type="radio" name="luz" required> Bueno</label>
                     <label><input type="radio" name="luz"> Malo</label>
@@ -201,7 +323,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>5. Sistemas Mecánicos (Frenos, dirección, suspensión y transmisión)</span>
+                <span>Sistemas Mecánicos (Frenos, dirección, suspensión y transmisión)</span>
                 <div class="options">
                     <label><input type="radio" name="mec" required> Bueno</label>
                     <label><input type="radio" name="mec"> Malo</label>
@@ -210,7 +332,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>6. Fluidos (Niveles de aceite, refrigerante, líquido de frenos)</span>
+                <span>Fluidos (Niveles de aceite, refrigerante, líquido de frenos)</span>
                 <div class="options">
                     <label><input type="radio" name="flu" required> Bueno</label>
                     <label><input type="radio" name="flu"> Malo</label>
@@ -219,7 +341,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>7. Seguridad Activa / Pasiva (Cinturones, airbags, bocina)</span>
+                <span>Seguridad Activa / Pasiva (Cinturones, airbags, bocina)</span>
                 <div class="options">
                     <label><input type="radio" name="seg" required> Bueno</label>
                     <label><input type="radio" name="seg"> Malo</label>
@@ -228,7 +350,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>8. Equipo de Prevención y Seguridad (Kit de carretera, extintor, triángulos, gato)</span>
+                <span>Equipo de Prevención y Seguridad (Kit de carretera, extintor, triángulos, gato)</span>
                 <div class="options">
                     <label><input type="radio" name="eq" required> Bueno</label>
                     <label><input type="radio" name="eq"> Malo</label>
@@ -237,7 +359,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>9. Compartimiento Carga (Aseguramiento, lonas, compuertas)</span>
+                <span>Compartimiento Carga (Aseguramiento, lonas, compuertas)</span>
                 <div class="options">
                     <label><input type="radio" name="carga" required> Bueno</label>
                     <label><input type="radio" name="carga"> Malo</label>
@@ -246,7 +368,7 @@
             </div>
 
             <div class="checklist-item">
-                <span>10. Control de seguridad y trazabilidad (Verificación final y registro)</span>
+                <span>Control de seguridad y trazabilidad (Verificación final y registro)</span>
                 <div class="options">
                     <label><input type="radio" name="traz" required> Bueno</label>
                     <label><input type="radio" name="traz"> Malo</label>
@@ -259,7 +381,18 @@
     </div>
 
     <script>
-        // Función para activar/desactivar visualmente los botones de categorías
+        // Función para alternar el botón y mostrar la sección desplegable de Documentación
+        function toggleSeccion(idSeccion, btn) {
+            btn.classList.toggle('selected');
+            const seccion = document.getElementById(idSeccion);
+            if (seccion.classList.contains('active')) {
+                seccion.classList.remove('active');
+            } else {
+                seccion.classList.add('active');
+            }
+        }
+
+        // Función para los demás botones normales
         function toggleBtn(btn) {
             btn.classList.toggle('selected');
         }
