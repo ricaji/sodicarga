@@ -35,9 +35,9 @@
             background: #e3f2fd;
             border: 2px solid #90caf9;
             color: #0d47a1;
-            padding: 14px 10px;
+            padding: 12px 6px;
             border-radius: 8px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             cursor: pointer;
             text-align: center;
@@ -67,8 +67,6 @@
             display: block;
         }
 
-        .section-title { color: #e30613; margin-top: 30px; border-bottom: 1px solid #ddd; padding-bottom: 5px; font-size: 16px; font-weight: bold; }
-        
         /* Estilo para las subpreguntas detalladas de los módulos */
         .sub-item {
             background: white;
@@ -98,9 +96,6 @@
             box-sizing: border-box;
             background: white;
         }
-
-        .checklist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
-        .options label { margin-left: 15px; cursor: pointer; font-weight: normal; }
         
         button.btn-submit {
             background: #e30613; color: white; border: none; padding: 14px 25px;
@@ -192,462 +187,167 @@
             <div class="input-group">
                 <label>Selección de Módulos de Inspección (Haga clic para alternar secciones)</label>
                 <div class="buttons-grid">
-                    <div class="option-btn" id="btn-doc" onclick="mostrarSeccion('seccion-documentacion', this)">Documentación</div>
-                    <div class="option-btn" id="btn-ext" onclick="mostrarSeccion('seccion-exterior', this)">Estado Exterior</div>
-                    <div class="option-btn" id="btn-llantas" onclick="mostrarSeccion('seccion-llantas', this)">Llantas</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Iluminación y señalización</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Sistemas Mecánicos</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Fluidos</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Seguridad Activa/Pasiva</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Equipo Prevención/Seguridad</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Compartimiento Carga</div>
-                    <div class="option-btn" onclick="toggleBtn(this)">Control Seguridad/Trazabilidad</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-documentacion', this)">Documentación</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-exterior', this)">Estado Exterior</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-llantas', this)">Llantas</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-iluminacion', this)">Iluminación y señalización</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-mecanicos', this)">Sistemas Mecánicos</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-fluidos', this)">Fluidos</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-seguridad', this)">Seguridad Activa/Pasiva</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-prevencion', this)">Equipo Prevención/Seguridad</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-carga', this)">Compartimiento Carga</div>
+                    <div class="option-btn" onclick="mostrarSeccion('seccion-trazabilidad', this)">Control Seguridad/Trazabilidad</div>
                 </div>
             </div>
 
-            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN -->
+            <!-- 1. SECCIÓN: DOCUMENTACIÓN -->
             <div id="seccion-documentacion" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
                 
-                <div class="sub-item">
-                    <p>1. Licencia de tránsito disponible y vigente</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>2. SOAT vigente</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>3. Revisión técnico-mecánica vigente, cuando aplique</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>4. Licencia de conducción vigente y categoría correspondiente</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>5. Documentos adicionales exigidos para la operación</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>6. Documentación de la carga disponible</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
+                <div class="sub-item"><p>1. Licencia de tránsito disponible y vigente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. SOAT vigente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Revisión técnico-mecánica vigente, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Licencia de conducción vigente y categoría correspondiente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Documentos adicionales exigidos para la operación</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Documentación de la carga disponible</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <!-- SECCIÓN DESPLEGABLE: ESTADO EXTERIOR -->
+            <!-- 2. SECCIÓN: ESTADO EXTERIOR -->
             <div id="seccion-exterior" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Estado Exterior</h3>
                 
-                <div class="sub-item">
-                    <p>1. Carrocería en buen estado</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>2. Chasis sin daños visibles</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>3. Parachoques delantero</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>4. Parachoques trasero</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>5. Puertas y mecanismos de cierre</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>6. Vidrios en buen estado</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>7. Parabrisas sin daños que afecten visibilidad</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>8. Placas legibles y correctamente instaladas</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>9. Retrovisores/espejos en buen estado</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>10. Limpiaparabrisas funcionando</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>11. No se evidencian fugas de fluidos</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
+                <div class="sub-item"><p>1. Carrocería en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Chasis sin daños visibles</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Parachoques delantero</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Parachoques trasero</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Puertas y mecanismos de cierre</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Vidrios en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Parabrisas sin daños que afecten visibilidad</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Placas legibles y correctamente instaladas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. Retrovisores/espejos en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>10. Limpiaparabrisas funcionando</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>11. No se evidencian fugas de fluidos</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <!-- SECCIÓN DESPLEGABLE: LLANTAS -->
+            <!-- 3. SECCIÓN: LLANTAS -->
             <div id="seccion-llantas" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Llantas</h3>
                 
-                <div class="sub-item">
-                    <p>1. Llanta delantera izquierda</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>2. Llanta delantera derecha</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>3. Llantas traseras</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>4. Llantas sin deformaciones o cortes</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>5. Profundidad de labrado adecuada</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>6. Presión de inflado adecuada</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>7. Tuercas y elementos de fijación completos</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>8. Llanta de repuesto disponible y en condiciones</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
-
-                <div class="sub-item">
-                    <p>9. No existen objetos incrustados que comprometan la seguridad</p>
-                    <div class="sub-controls">
-                        <select>
-                            <option value="">Seleccione...</option>
-                            <option value="Cumple">Cumple</option>
-                            <option value="No Cumple">No Cumple</option>
-                            <option value="No Aplica">No Aplica</option>
-                        </select>
-                        <input type="text" placeholder="Observaciones">
-                        <input type="text" placeholder="Acción / responsable">
-                    </div>
-                </div>
+                <div class="sub-item"><p>1. Llanta delantera izquierda</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Llanta delantera derecha</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Llantas traseras</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Llantas sin deformaciones o cortes</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Profundidad de labrado adecuada</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Presión de inflado adecuada</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Tuercas y elementos de fijación completos</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Llanta de repuesto disponible y en condiciones</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. No existen objetos incrustados que comprometan la seguridad</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <!-- Ítems Generales Restantes -->
-            <div class="section-title">Ítems de Verificación Operativa Restantes</div>
-
-            <div class="checklist-item">
-                <span>Iluminación y Señalización (Farolas, direccionales, stop, reversa)</span>
-                <div class="options">
-                    <label><input type="radio" name="luz" required> Bueno</label>
-                    <label><input type="radio" name="luz"> Malo</label>
-                    <label><input type="radio" name="luz"> N/A</label>
-                </div>
+            <!-- 4. SECCIÓN: ILUMINACIÓN Y SEÑALIZACIÓN -->
+            <div id="seccion-iluminacion" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Iluminación y Señalización</h3>
+                
+                <div class="sub-item"><p>1. Luces bajas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Luces altas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Luces de posición</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Direccionales delanteras</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Direccionales traseras</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Luces de freno</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Luces de reversa</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Luces estacionarias/emergencia</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. Luz de placa</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>10. Reflectivos en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Sistemas Mecánicos (Frenos, dirección, suspensión y transmisión)</span>
-                <div class="options">
-                    <label><input type="radio" name="mec" required> Bueno</label>
-                    <label><input type="radio" name="mec"> Malo</label>
-                    <label><input type="radio" name="mec"> N/A</label>
-                </div>
+            <!-- 5. SECCIÓN: SISTEMAS MECÁNICOS -->
+            <div id="seccion-mecanicos" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Sistemas Mecánicos</h3>
+                
+                <div class="sub-item"><p>1. Sistema de frenos</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Freno de estacionamiento</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Dirección</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Suspensión</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Amortiguadores</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Sistema de transmisión</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Embrague, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Motor sin ruidos anormales</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. No se evidencian fugas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Fluidos (Niveles de aceite, refrigerante, líquido de frenos)</span>
-                <div class="options">
-                    <label><input type="radio" name="flu" required> Bueno</label>
-                    <label><input type="radio" name="flu"> Malo</label>
-                    <label><input type="radio" name="flu"> N/A</label>
-                </div>
+            <!-- 6. SECCIÓN: FLUIDOS -->
+            <div id="seccion-fluidos" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Fluidos</h3>
+                
+                <div class="sub-item"><p>1. Nivel de aceite del motor</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Líquido refrigerante</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Líquido de frenos</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Líquido hidráulico, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Agua/líquido limpiaparabrisas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Combustible suficiente para la operación</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Sin fugas visibles</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Seguridad Activa / Pasiva (Cinturones, airbags, bocina)</span>
-                <div class="options">
-                    <label><input type="radio" name="seg" required> Bueno</label>
-                    <label><input type="radio" name="seg"> Malo</label>
-                    <label><input type="radio" name="seg"> N/A</label>
-                </div>
+            <!-- 7. SECCIÓN: SEGURIDAD ACTIVA/PASIVA -->
+            <div id="seccion-seguridad" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Seguridad Activa/Pasiva</h3>
+                
+                <div class="sub-item"><p>1. Cinturón conductor en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Cinturones de pasajeros, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Sillas y apoyacabezas en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Airbags/testigos sin anomalías visibles</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Sistema ABS/testigo sin anomalías, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Bocina funcionando</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Alarma de reversa, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Cámara/sensores de reversa, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Equipo de Prevención y Seguridad (Kit de carretera, extintor, triángulos, gato)</span>
-                <div class="options">
-                    <label><input type="radio" name="eq" required> Bueno</label>
-                    <label><input type="radio" name="eq"> Malo</label>
-                    <label><input type="radio" name="eq"> N/A</label>
-                </div>
+            <!-- 8. SECCIÓN: EQUIPO DE PREVENCIÓN/SEGURIDAD -->
+            <div id="seccion-prevencion" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Equipo de Prevención/Seguridad</h3>
+                
+                <div class="sub-item"><p>1. Extintor disponible</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Extintor con carga vigente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Botiquín</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Señales/dispositivos reflectivos de emergencia</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Gato</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Cruceta/herramienta para cambio de llanta</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Linterna</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Kit de carretera completo</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. Herramientas básicas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Compartimiento Carga (Aseguramiento, lonas, compuertas)</span>
-                <div class="options">
-                    <label><input type="radio" name="carga" required> Bueno</label>
-                    <label><input type="radio" name="carga"> Malo</label>
-                    <label><input type="radio" name="carga"> N/A</label>
-                </div>
+            <!-- 9. SECCIÓN: COMPARTIMIENTO CARGA -->
+            <div id="seccion-carga" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Compartimiento Carga</h3>
+                
+                <div class="sub-item"><p>1. Carrocería/contenedor en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Puertas de carga funcionan correctamente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Cerraduras funcionan correctamente</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Piso en buen estado</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Paredes y techo sin daños</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Sin elementos extraños dentro del compartimiento</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Ausencia de modificaciones no autorizadas</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Sistema de sujeción de carga disponible</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. Carga correctamente distribuida</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>10. Carga correctamente asegurada</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>11. Sellos/cintas de seguridad, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>12. Número de sello registrado, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
-            <div class="checklist-item">
-                <span>Control de seguridad y trazabilidad (Verificación final y registro)</span>
-                <div class="options">
-                    <label><input type="radio" name="traz" required> Bueno</label>
-                    <label><input type="radio" name="traz"> Malo</label>
-                    <label><input type="radio" name="traz"> N/A</label>
-                </div>
+            <!-- 10. SECCIÓN: CONTROL SEGURIDAD / TRAZABILIDAD -->
+            <div id="seccion-trazabilidad" class="section-content">
+                <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Control Seguridad / Trazabilidad</h3>
+                
+                <div class="sub-item"><p>1. GPS/satelital funcionando</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>2. Botón de pánico, cuando aplique</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>3. Sistema de comunicación disponible</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>4. Número de teléfono de tráfico/control disponible</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>5. Vehículo autorizado para el servicio</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>6. Conductor autorizado para el servicio</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>7. Ruta autorizada</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>8. Elementos de seguridad de la carga verificados</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
+                <div class="sub-item"><p>9. No se evidencian condiciones inseguras</p><div class="sub-controls"><select><option value="">Seleccione...</option><option value="Cumple">Cumple</option><option value="No Cumple">No Cumple</option><option value="No Aplica">No Aplica</option></select><input type="text" placeholder="Observaciones"><input type="text" placeholder="Acción / responsable"></div></div>
             </div>
 
             <button type="submit" class="btn-submit">Enviar Checklist Preoperacional</button>
@@ -669,10 +369,6 @@
                 seccionActual.classList.add('active');
                 btn.classList.add('selected');
             }
-        }
-
-        function toggleBtn(btn) {
-            btn.classList.toggle('selected');
         }
 
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
