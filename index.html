@@ -61,13 +61,14 @@
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
             event.preventDefault();
-            const user = document.getElementById('usuario').value;
+            
+            // .trim() elimina espacios vacíos al inicio o final por error
+            const user = document.getElementById('usuario').value.trim();
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // Validación de Administrador
-            if (user === 'Administrador' && pass === 'Tato2756*') {
-                // Redirige al panel de administración de usuarios
+            // Acepta 'Administrador' o 'administrador' y la clave exacta
+            if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
                 window.location.href = 'usuarios.html';
             } else {
                 errorMsg.style.display = 'block';
