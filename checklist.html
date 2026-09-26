@@ -85,22 +85,18 @@
         }
         .doc-controls {
             display: grid;
-            grid-template-columns: 150px 1fr 1fr;
+            grid-template-columns: 140px 1fr 1fr;
             gap: 10px;
             align-items: center;
         }
-        .doc-controls input[type="text"] {
+        .doc-controls select, .doc-controls input[type="text"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 13px;
             box-sizing: border-box;
-        }
-        .radio-group label {
-            margin-right: 10px;
-            font-size: 13px;
-            cursor: pointer;
+            background: white;
         }
 
         .checklist-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #f1f1f1; font-size: 14px; }
@@ -209,18 +205,19 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN -->
+            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN (Con listas desplegables C/NC/NA) -->
             <div id="seccion-documentacion" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
                 
                 <div class="doc-item">
                     <p>1. Licencia de tránsito disponible y vigente</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc1" required> C</label>
-                            <label><input type="radio" name="doc1"> NC</label>
-                            <label><input type="radio" name="doc1"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
@@ -229,11 +226,12 @@
                 <div class="doc-item">
                     <p>2. SOAT vigente</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc2" required> C</label>
-                            <label><input type="radio" name="doc2"> NC</label>
-                            <label><input type="radio" name="doc2"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
@@ -242,11 +240,12 @@
                 <div class="doc-item">
                     <p>3. Revisión técnico-mecánica vigente, cuando aplique</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc3" required> C</label>
-                            <label><input type="radio" name="doc3"> NC</label>
-                            <label><input type="radio" name="doc3"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
@@ -255,11 +254,12 @@
                 <div class="doc-item">
                     <p>4. Licencia de conducción vigente y categoría correspondiente</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc4" required> C</label>
-                            <label><input type="radio" name="doc4"> NC</label>
-                            <label><input type="radio" name="doc4"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
@@ -268,11 +268,12 @@
                 <div class="doc-item">
                     <p>5. Documentos adicionales exigidos para la operación</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc5" required> C</label>
-                            <label><input type="radio" name="doc5"> NC</label>
-                            <label><input type="radio" name="doc5"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
@@ -281,11 +282,12 @@
                 <div class="doc-item">
                     <p>6. Documentación de la carga disponible</p>
                     <div class="doc-controls">
-                        <div class="radio-group">
-                            <label><input type="radio" name="doc6" required> C</label>
-                            <label><input type="radio" name="doc6"> NC</label>
-                            <label><input type="radio" name="doc6"> NA</label>
-                        </div>
+                        <select required>
+                            <option value="">Seleccione...</option>
+                            <option value="C">C (Cumple)</option>
+                            <option value="NC">NC (No Cumple)</option>
+                            <option value="NA">NA (No Aplica)</option>
+                        </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
                     </div>
