@@ -85,7 +85,7 @@
         }
         .doc-controls {
             display: grid;
-            grid-template-columns: 140px 1fr 1fr;
+            grid-template-columns: 180px 1fr 1fr;
             gap: 10px;
             align-items: center;
         }
@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN (Con listas desplegables C/NC/NA) -->
+            <!-- SECCIÓN DESPLEGABLE: DOCUMENTACIÓN -->
             <div id="seccion-documentacion" class="section-content">
                 <h3 style="color: #1976d2; margin-top: 0; font-size: 15px; border-bottom: 1px solid #ddd; padding-bottom: 8px;">Detalle del Módulo: Documentación</h3>
                 
@@ -214,9 +214,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -228,9 +228,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -242,9 +242,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -256,9 +256,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -270,9 +270,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -284,9 +284,9 @@
                     <div class="doc-controls">
                         <select required>
                             <option value="">Seleccione...</option>
-                            <option value="C">C (Cumple)</option>
-                            <option value="NC">NC (No Cumple)</option>
-                            <option value="NA">NA (No Aplica)</option>
+                            <option value="Cumple">Cumple</option>
+                            <option value="No Cumple">No Cumple</option>
+                            <option value="No Aplica">No Aplica</option>
                         </select>
                         <input type="text" placeholder="Observaciones">
                         <input type="text" placeholder="Acción / responsable">
@@ -383,7 +383,6 @@
     </div>
 
     <script>
-        // Función para alternar el botón y mostrar la sección desplegable de Documentación
         function toggleSeccion(idSeccion, btn) {
             btn.classList.toggle('selected');
             const seccion = document.getElementById(idSeccion);
@@ -394,7 +393,6 @@
             }
         }
 
-        // Función para los demás botones normales
         function toggleBtn(btn) {
             btn.classList.toggle('selected');
         }
