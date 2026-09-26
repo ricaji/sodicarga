@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodicarga - Panel de Administrador</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f4f6f8; color: #222; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .admin-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
+        h1 { color: #e30613; margin-bottom: 10px; }
+        p { color: #666; margin-bottom: 30px; }
+        .btn-menu {
+            background: #e30613; color: white; border: none; padding: 15px;
+            width: 100%; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold;
+            margin-bottom: 15px; display: block; text-decoration: none; box-sizing: border-box; text-align: center;
+        }
+        .btn-menu:hover { background: #b80510; }
+        .btn-logout { background: #333; }
+        .btn-logout:hover { background: #111; }
+    </style>
+</head>
+<body>
 
+    <div class="admin-card">
+        <h1>Panel de Control</h1>
+        <p>Bienvenido, Administrador. Selecciona a dónde deseas ir:</p>
+
+        <a href="usuarios.html" class="btn-menu">Gestionar Usuarios</a>
+        <a href="checklist.html" class="btn-menu">Ir al Checklist Preoperacional PESV</a>
+        
+        <button class="btn-menu btn-logout" onclick="window.location.href='index.html'">Cerrar Sesión</button>
+    </div>
+
+</body>
+</html>
