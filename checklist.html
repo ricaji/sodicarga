@@ -97,7 +97,7 @@
             background: white;
         }
 
-        /* Cuadro de Resumen y Cálculos */
+        /* Cuadro de Resumen y Cálculos (Ajustado a 5 columnas para incluir el % Cumplimiento) */
         .summary-box {
             background: #f8f9fa;
             border: 2px solid #dee2e6;
@@ -115,25 +115,25 @@
         }
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
             text-align: center;
         }
         .summary-card {
             background: white;
-            padding: 12px;
+            padding: 12px 6px;
             border-radius: 6px;
             border: 1px solid #ccc;
         }
         .summary-card span {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
             margin-bottom: 5px;
             font-weight: bold;
         }
         .summary-card strong {
-            font-size: 18px;
+            font-size: 16px;
             color: #e30613;
         }
         
@@ -400,6 +400,10 @@
                         <span>No Aplica</span>
                         <strong id="lbl-noaplica" style="color: #ffc107;">0</strong>
                     </div>
+                    <div class="summary-card">
+                        <span>% Cumplimiento</span>
+                        <strong id="lbl-porcentaje" style="color: #17a2b8;">0%</strong>
+                    </div>
                 </div>
             </div>
 
@@ -421,12 +425,13 @@
             }
         }
 
-        // Función para sumar y actualizar en tiempo real los totales de Cumple, No Cumple y No Aplica
+        // Función para calcular totales y el % Cumplimiento según la fórmula
         function calcularTotales() {
             const selects = document.querySelectorAll('.eval-select');
             let cumple = 0;
             let noCumple = 0;
             let noAplica = 0;
+            const totalItems = 90;
 
             selects.forEach(sel => {
                 if (sel.value === 'Cumple') {
@@ -438,9 +443,18 @@
                 }
             });
 
+            // Fórmula solicitada: cumple / (Total items - No aplica)
+            let denominador = totalItems - noAplica;
+            let porcentaje = 0;
+            
+            if (denominador > 0) {
+                porcentaje = (cumple / denominador) * 100;
+            }
+
             document.getElementById('lbl-cumple').innerText = cumple;
             document.getElementById('lbl-nocumple').innerText = noCumple;
             document.getElementById('lbl-noaplica').innerText = noAplica;
+            document.getElementById('lbl-porcentaje').innerText = porcentaje.toFixed(1) + '%';
         }
 
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
