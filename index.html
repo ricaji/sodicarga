@@ -59,35 +59,81 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
+        // ==========================================
+        // CONFIGURACIÓN DE MONGODB ATLAS DATA API
+        // ==========================================
+        const ATLAS_URL = "ai.mongodb.com"; // Reemplaza con tu Endpoint URL real
+        const ATLAS_API_KEY = "al-ieDsW1653q0sNDGFU9QZWTdm_kGYfh3I2HeGUSLBku9";          // Reemplaza con tu API Key real
+        const CLUSTER_NAME = "Cluster0";             // Nombre de tu clúster
+        const DB_NAME = "sodicarga";              // Nombre de tu base de datos
+
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
             event.preventDefault();
             
             const user = document.getElementById('usuario').value.trim();
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
+            const btnSubmit = document.querySelector('.btn-login');
 
-            // 1. Verificación directa y segura para el Administrador principal
+            // Deshabilitar botón mientras consulta la nube
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "Verificando en la nube...";
+            errorMsg.style.display = 'none';
+
+            // 1. Verificación para el Administrador principal (Acceso maestro)
             if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
                 localStorage.setItem('sodicarga_user_actual', user);
+                localStorage.setItem('sodicarga_rol_actual', 'Administrador');
                 window.location.href = 'panel-admin.html';
                 return;
             }
 
-            // 2. Verificación para los demás usuarios creados en LocalStorage
-            let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [];
-            let usuarioEncontrado = usuariosRegistrados.find(u => 
-                u.nombre.toLowerCase() === user.toLowerCase() && u.clave === pass
-            );
+            try {
+                // 2. Consultar usuarios en la nube de MongoDB Atlas
+                const respuesta = await fetch(`${ATLAS_URL}/action/find`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Access-Control-Request-Headers": "*",
+                        "api-key": ATLAS_API_KEY
+                    },
+                    body: JSON.stringify({
+                        dataSource: CLUSTER_NAME,
+                        database: DB_NAME,
+                        collection: "usuarios",
+                        filter: { 
+                            nombre: { $regex: `^${user}$`, $options: "i" }, 
+                            clave: pass 
+                        }
+                    })
+                });
 
-            if (usuarioEncontrado) {
-                localStorage.setItem('sodicarga_user_actual', usuarioEncontrado.nombre);
-                if (usuarioEncontrado.rol === 'Administrador') {
-                    window.location.href = 'panel-admin.html';
+                const data = await respuesta.json();
+                const usuariosEncontrados = data.documents;
+
+                if (usuariosEncontrados && usuariosEncontrados.length > 0) {
+                    const usuarioEncontrado = usuariosEncontrados[0];
+                    
+                    // Guardar datos de la sesión actual en el navegador
+                    localStorage.setItem('sodicarga_user_actual', usuarioEncontrado.nombre);
+                    localStorage.setItem('sodicarga_rol_actual', usuarioEncontrado.rol);
+
+                    // Redirección basada en el rol del usuario
+                    if (usuarioEncontrado.rol === 'Administrador') {
+                        window.location.href = 'panel-admin.html';
+                    } else {
+                        window.location.href = 'checklist.html';
+                    }
                 } else {
-                    window.location.href = 'checklist.html';
+                    errorMsg.style.display = 'block';
+                    btnSubmit.disabled = false;
+                    btnSubmit.innerText = "Ingresar";
                 }
-            } else {
-                errorMsg.style.display = 'block';
+            } catch (error) {
+                console.error("Error de conexión con Atlas:", error);
+                alert("Error al conectar con la base de datos en la nube.");
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Ingresar";
             }
         });
     </script>
