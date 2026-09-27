@@ -67,7 +67,8 @@
             const errorMsg = document.getElementById('errorLogin');
 
             // 1. Verificación directa y segura para el Administrador principal
-            if ((user === 'Administrador' || user === 'administrador') && pass === '123456789') {
+            if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
+                localStorage.setItem('sodicarga_user_actual', user);
                 window.location.href = 'panel-admin.html';
                 return;
             }
