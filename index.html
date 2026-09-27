@@ -5,56 +5,220 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sodicarga - Iniciar Sesión</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f6f8;
+        /* Fondo general de la página con tu imagen 333.png */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('333.png') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #222; 
+        }
+
+        /* Cuadro de logueo con fondo blanco sólido y sombra para que resalte sobre la imagen */
+        .login-container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 380px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #e30613;
+            margin-top: 0;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button.btn-login {
+            background: #e30613;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        button.btn-login:hover {
+            background: #b80510;
+        }
+
+        .error-msg {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 15px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Sodicarga - PESV</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label>Usuario</label>
+                <input type="text" id="usuario" placeholder="Ingrese su usuario" required>
+            </div>
+            <div class="input-group">
+                <label>Para poner la imagen de fondo **`333.png`** en tu archivo **`index.html`** sin que afecte para nada el cuadro de inicio de sesión (login), la clave está en configurar el fondo en el `body` para que cubra toda la pantalla, pero asegurarnos de que el cuadro o contenedor del login tenga su propio color de fondo sólido (por ejemplo, blanco). 
+
+De esta manera, la imagen se verá elegante alrededor del cuadro y el formulario de inicio de sesión se mantendrá totalmente legible y nítido.
+
+Aquí tienes el código completo y actualizado para tu archivo **`index.html`** con la imagen de fondo integrada:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sodicarga - Iniciar Sesión</title>
+    <style>
+        /* El body usa la imagen 333.png como fondo fijo cubriendo toda la pantalla */
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0;
+            background: url('333.png') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #222; 
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        .login-card {
-            background: white;
-            padding: 40px;
+
+        /* Cuadro de login con fondo blanco sólido y sombra para resaltar sobre la imagen */
+        .login-container {
+            background: #ffffff;
+            padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 400px;
+            max-width: 380px;
+            box-sizing: border-box;
             text-align: center;
         }
-        h1 { color: #e30613; margin-bottom: 10px; }
-        .subtitle { color: #666; font-size: 14px; margin-bottom: 30px; }
-        .input-group { text-align: left; margin-bottom: 20px; }
-        .input-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #333; }
+
+        .login-container h2 {
+            color: #e30613;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 22px;
+            text-transform: uppercase;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #444;
+        }
+
         .input-group input {
-            width: 100%; padding: 12px; border: 1px solid #ccc;
-            border-radius: 6px; box-sizing: border-box; font-size: 14px;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
         }
-        button {
-            background: #e30613; color: white; border: none; padding: 12px;
-            width: 100%; border-radius: 6px; cursor: pointer; font-size: 16px; font-weight: bold;
+
+        .btn-login {
+            background: #e30613;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.2s;
         }
-        button:hover { background: #b80510; }
-        .error-msg { color: #dc3545; font-size: 13px; margin-top: 10px; display: none; }
+
+        .btn-login:hover {
+            background: #b80510;
+        }
+
+        .error-msg {
+            color: #e30613;
+            font-size: 12px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Adaptabilidad para celulares */
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 15px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="login-card">
-        <h1>Sodicarga</h1>
-        <p class="subtitle">Inicia sesión en el sistema</p>
-        
+
+    <div class="login-container">
+        <h2>Sodicarga</h2>
+        <p style="font-size: 12px; color: #666; margin-bottom: 20px;">Sistema Checklist Preoperacional PESV</p>
+
         <form id="loginForm">
             <div class="input-group">
-                <label for="usuario">Usuario</label>
-                <input type="text" id="usuario" required placeholder="Usuario">
+                <label>Usuario</label>
+                <input type="text" id="usuario" placeholder="Ingrese su usuario" required>
             </div>
+            
             <div class="input-group">
-                <label for="password">Contraseña</label>
-                <input type="password" id="password" required placeholder="••••••••">
+                <label>Contraseña</label>
+                <input type="password" id="password" placeholder="Ingrese su contraseña" required>
             </div>
-            <button type="submit">Ingresar</button>
-            <p id="errorLogin" class="error-msg">Usuario o contraseña incorrectos.</p>
+
+            <button type="submit" class="btn-login">Ingresar</button>
+            <div id="errorLogin" class="error-msg">Usuario o contraseña incorrectos</div>
         </form>
     </div>
 
@@ -66,14 +230,14 @@
             const pass = document.getElementById('password').value;
             const errorMsg = document.getElementById('errorLogin');
 
-            // 1. Verificación directa y segura para el Administrador principal
+            // 1. Verificación para el Administrador principal
             if ((user === 'Administrador' || user === 'administrador') && pass === 'Tato2756*') {
                 localStorage.setItem('sodicarga_user_actual', user);
                 window.location.href = 'panel-admin.html';
                 return;
             }
 
-            // 2. Verificación para los demás usuarios creados en LocalStorage
+            // 2. Verificación para los demás usuarios registrados en LocalStorage
             let usuariosRegistrados = JSON.parse(localStorage.getItem('sodicarga_usuarios')) || [];
             let usuarioEncontrado = usuariosRegistrados.find(u => 
                 u.nombre.toLowerCase() === user.toLowerCase() && u.clave === pass
@@ -81,6 +245,7 @@
 
             if (usuarioEncontrado) {
                 localStorage.setItem('sodicarga_user_actual', usuarioEncontrado.nombre);
+
                 if (usuarioEncontrado.rol === 'Administrador') {
                     window.location.href = 'panel-admin.html';
                 } else {
