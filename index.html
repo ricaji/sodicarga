@@ -80,6 +80,7 @@
             );
 
             if (usuarioEncontrado) {
+                localStorage.setItem('sodicarga_user_actual', usuarioEncontrado.nombre);
                 if (usuarioEncontrado.rol === 'Administrador') {
                     window.location.href = 'panel-admin.html';
                 } else {
