@@ -16,7 +16,26 @@
             border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 13px;
         }
         .container { max-width: 1000px; margin: 15px auto; padding: 15px; background: white; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        h2 { color: #e30613; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; font-size: 20px; }
+        
+        /* Título Principal Centrado y con Estilo de Título Profesional */
+        .page-title {
+            text-align: center;
+            color: #e30613;
+            font-size: 22px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e30613;
+            padding-bottom: 12px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .page-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
         
         /* Formularios en dos columnas por defecto */
         .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
@@ -172,6 +191,7 @@
             .sub-controls { grid-template-columns: 1fr; }
             .summary-grid { grid-template-columns: repeat(2, 1fr); }
             .signatures-container { grid-template-columns: 1fr; }
+            .page-title { font-size: 18px; }
         }
     </style>
 </head>
@@ -185,8 +205,9 @@
     </header>
 
     <div class="container">
-        <h2>CHECKLIST PREOPERACIONAL DE VEHÍCULOS – PESV</h2>
-        <p style="color: #666; font-size: 13px; margin-bottom: 20px;">Inspección diaria antes de iniciar la operación</p>
+        <!-- Título Centrado y con Estilo Profesional -->
+        <h2 class="page-title">Checklist Preoperacional de Vehículos – PESV</h2>
+        <p class="page-subtitle">Inspección diaria antes de iniciar la operación</p>
 
         <form id="pesvForm">
             <!-- Datos Generales -->
@@ -408,7 +429,7 @@
                         <button type="button" class="btn-clear" onclick="limpiarFirma('canvasControl', 'previewControl')">Limpiar</button>
                         <label class="file-upload-label">
                             Subir Imagen
-                            <input type="file" accept="image/*" onchange="subirFirma(event, 'canvasControl', 'previewControl')">
+                            <input type="file" accept="image/*" onchange="subirF/firma(event, 'canvasControl', 'previewControl')">
                         </label>
                     </div>
                 </div>
@@ -422,12 +443,9 @@
         // Validación del rol al cargar la página para mostrar el botón correcto en el header
         window.addEventListener('DOMContentLoaded', function() {
             const navContainer = document.getElementById('headerNav');
-            // Verificamos si en la sesión actual está el usuario Administrador o si tiene rol de administrador
-            // (Puedes adaptar esto según cómo guardes la sesión, por defecto validamos si el usuario actual es Administrador o rol Admin)
             let rolActual = localStorage.getItem('sodicarga_rol_actual') || 'Conductor';
-            
-            // O si prefieres evaluarlo por el usuario que ingresó:
             let usuarioActual = localStorage.getItem('sodicarga_user_actual') || '';
+            
             if (usuarioActual.toLowerCase() === 'administrador' || rolActual === 'Administrador') {
                 navContainer.innerHTML = '<button onclick="window.location.href=\'panel-admin.html\'">Panel Admin</button>' +
                                          '<button onclick="window.location.href=\'usuarios.html\'">Volver a Usuarios</button>';
@@ -532,56 +550,18 @@
             canvas.addEventListener('mousedown', iniciarTrazo);
             canvas.addEventListener('mousemove', dibujar);
             canvas.addEventListener('mouseup', terminarTrazo);
-            canvas.addEventListener('mouseleave', terminarTrazo);
+            canvas.Para que el título **"CHECKLIST PREOPERACIONAL DE VEHÍCULOS – PESV"** quede perfectamente centrado y con estilo de título principal, vamos a ajustar una línea en la sección de diseño (`<style>`) de tu archivo `checklist.html`.
 
-            canvas.addEventListener('touchstart', iniciarTrazo);
-            canvas.addEventListener('touchmove', dibujar);
-            canvas.addEventListener('touchend', terminarTrazo);
-        }
+### Cambios a realizar en `checklist.html`:
 
-        function limpiarFirma(canvasId, previewId) {
-            const canvas = document.getElementById(canvasId);
-            const ctx = canvas.getContext('2d');
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            const preview = document.getElementById(previewId);
-            preview.src = '';
-            preview.style.display = 'none';
-            canvas.style.display = 'block';
-        }
-
-        function subirFirma(event, canvasId, previewId) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const preview = document.getElementById(previewId);
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                    document.getElementById(canvasId).style.display = 'none';
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        window.addEventListener('load', function() {
-            inicializarCanvas('canvasConductor');
-            inicializarCanvas('canvasControl');
-        });
-
-        // ENVÍO LOCAL
-        document.getElementById('pesvForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
-            
-            // Redirigir según el rol al terminar de enviar
-            let usuarioActual = localStorage.getItem('sodicarga_user_actual') || '';
-            if (usuarioActual.toLowerCase() === 'administrador') {
-                window.location.href = 'panel-admin.html';
-            } else {
-                window.location.href = 'index.html';
-            }
-        });
-    </script>
-</body>
-</html>
+1. Busca en la parte superior de tu archivo `checklist.html` la etiqueta de estilos `<style>` y agrega o modifica la regla para la etiqueta `h2`:
+   ```css
+   h2 { 
+       color: #e30613; 
+       border-bottom: 2px solid #eee; 
+       padding-bottom: 10px; 
+       margin-top: 0; 
+       font-size: 22px; 
+       text-align: center; /* <-- Esta línea centra el texto */
+       text-transform: uppercase; /* <-- Asegura que se vea como título formal */
+   }
