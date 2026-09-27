@@ -179,8 +179,8 @@
 
     <header>
         <h1>Sodicarga - Checklist PESV</h1>
-        <div class="nav-links">
-            <button onclick="window.location.href='usuarios.html'">Volver a Usuarios</button>
+        <div class="nav-links" id="headerNav">
+            <!-- El botón se cargará dinámicamente según el rol -->
         </div>
     </header>
 
@@ -419,6 +419,23 @@
     </div>
 
     <script>
+        // Validación del rol al cargar la página para mostrar el botón correcto en el header
+        window.addEventListener('DOMContentLoaded', function() {
+            const navContainer = document.getElementById('headerNav');
+            // Verificamos si en la sesión actual está el usuario Administrador o si tiene rol de administrador
+            // (Puedes adaptar esto según cómo guardes la sesión, por defecto validamos si el usuario actual es Administrador o rol Admin)
+            let rolActual = localStorage.getItem('sodicarga_rol_actual') || 'Conductor';
+            
+            // O si prefieres evaluarlo por el usuario que ingresó:
+            let usuarioActual = localStorage.getItem('sodicarga_user_actual') || '';
+            if (usuarioActual.toLowerCase() === 'administrador' || rolActual === 'Administrador') {
+                navContainer.innerHTML = '<button onclick="window.location.href=\'panel-admin.html\'">Panel Admin</button>' +
+                                         '<button onclick="window.location.href=\'usuarios.html\'">Volver a Usuarios</button>';
+            } else {
+                navContainer.innerHTML = '<button onclick="window.location.href=\'index.html\'" style="background: #333; color: white;">Salir</button>';
+            }
+        });
+
         function mostrarSeccion(idSeccion, btn) {
             const seccionActual = document.getElementById(idSeccion);
             const estaActiva = seccionActual.classList.contains('active');
@@ -552,11 +569,18 @@
             inicializarCanvas('canvasControl');
         });
 
-        // ENVÍO LOCAL (Sin Google Drive)
+        // ENVÍO LOCAL
         document.getElementById('pesvForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('¡Checklist Preoperacional PESV guardado y enviado con éxito!');
-            window.location.href = 'usuarios.html';
+            
+            // Redirigir según el rol al terminar de enviar
+            let usuarioActual = localStorage.getItem('sodicarga_user_actual') || '';
+            if (usuarioActual.toLowerCase() === 'administrador') {
+                window.location.href = 'panel-admin.html';
+            } else {
+                window.location.href = 'index.html';
+            }
         });
     </script>
 </body>
